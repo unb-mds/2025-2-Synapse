@@ -19,6 +19,7 @@ import PublicRoute from "./components/PublicRoute.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import FeedPage from "./pages/FeedPage.jsx";
 import NewsPage from "./pages/NewsPage.jsx";
+import SavedNewsPage from "./pages/SavedNewsPage.jsx";
 
 // Cria o objeto de configuração do roteador
 const router = createBrowserRouter([
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
       { path: "/account", element: <AccountPage /> },
       { path: "/edit-account", element: <EditAccount /> },
       { path: "/change-password", element: <ChangePassword /> },
+      { path: "/saved-news", element: <SavedNewsPage /> },
     ],
   },
 ]);
