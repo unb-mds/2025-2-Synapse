@@ -45,7 +45,7 @@ const SavedNewsCard = ({ news, onRemove }) => {
         />
 
         {/* Container de Texto */}
-        <div className="mt-3">
+        <div className="p-4">
           <h3 className="text-base font-bold text-gray-900 mb-2 font-montserrat">
             {news.title}
           </h3>

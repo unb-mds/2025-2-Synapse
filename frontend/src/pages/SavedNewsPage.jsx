@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import HeaderNewsPage from "../components/NewsPage/HeaderNewsPage";
+import HeaderFeedPage from "../components/FeedPage/HeaderFeedPage";
 import SavedNewsCard from "../components/SavedNews/SavedNewsCard";
 import RemoveConfirmationModal from "../components/SavedNews/RemoveConfirmationModal";
 import SavedNewsCardSkeleton from "../components/SavedNews/SavedNewsCardSkeleton";
+import { usersAPI } from "../services/api";
 
 const MOCK_SAVED_NEWS = [
   {
@@ -47,6 +48,14 @@ const MOCK_SAVED_NEWS = [
     image: "https://via.placeholder.com/400x250/84cc16/FFFFFF",
     isSaved: true,
   },
+  {
+    id: 6,
+    title: "Novo estudo revela benefícios do café para a memória a longo prazo",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+    image: "https://via.placeholder.com/400x250/a16207/FFFFFF",
+    isSaved: true,
+  },
 ];
 
 const SavedNewsPage = () => {
@@ -54,13 +63,27 @@ const SavedNewsPage = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [newsToRemove, setNewsToRemove] = useState(null);
+  const [userData, setUserData] = useState({ email: "" });
 
   useEffect(() => {
-    // Simulação de carregamento e população com dados mockados
-    setTimeout(() => {
+    const fetchPageData = async () => {
+      setLoading(true);
+
+      try {
+        // Busca os dados do usuário e as notícias salvas (simulação)
+        const userProfile = await usersAPI.getUserProfile();
+        setUserData(userProfile.data);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+        // Opcional: exibir uma notificação de erro para o usuário
+      }
+
+      // Simulação de carregamento das notícias salvas
       setSavedNews(MOCK_SAVED_NEWS);
       setLoading(false);
-    }, 800);
+    };
+
+    fetchPageData();
   }, []);
 
   // 1. Abre o modal de confirmação
@@ -84,24 +107,27 @@ const SavedNewsPage = () => {
     }
   };
 
-  const userEmail = "*@email.com";
-
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col font-montserrat">
-      <HeaderNewsPage userEmail={userEmail} />
+      <HeaderFeedPage userEmail={userData.email} />
 
-      <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-21 py-12 w-full">
-        <h1 className="text-3xl font-normal text-gray-900 font-montserrat text-center mb-10">
+      <main className="flex-grow max-w-6xl mx-auto sm:px-6 lg:px-8 mt-12 w-full">
+        <h1 className="p-3 text-3xl font-medium text-gray-900 font-montserrat text-center">
           Your saved news
         </h1>
 
         {loading ? (
           // Estado de carregamento
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-11">
-            {/* Renderize 3 esqueletos, simulando a visualização inicial */}
-            <SavedNewsCardSkeleton />
-            <SavedNewsCardSkeleton />
-            <SavedNewsCardSkeleton />
+          <div className="flex flex-wrap justify-center gap-8 mt-12 p-4">
+            {/* Renderize 6 esqueletos para corresponder ao layout */}
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div
+                key={index}
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-[30%] xl:w-1/4"
+              >
+                <SavedNewsCardSkeleton />
+              </div>
+            ))}
           </div>
         ) : savedNews.length === 0 ? (
           // Estado de lista vazia
@@ -111,19 +137,16 @@ const SavedNewsPage = () => {
             </p>
           </div>
         ) : (
-          // Container principal com posicionamento relativo para o efeito de fade
-          <div className="relative mt-11">
-            {/* Container de Rolagem com altura fixa */}
-            {/* Grid de Notícias Salvas com 3 colunas */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {savedNews.map((news) => (
-                <SavedNewsCard
-                  key={news.id}
-                  news={news}
-                  onRemove={handleConfirmRemove}
-                />
-              ))}
-            </div>
+          // Lista de notícias salvas
+          <div className="p-4 flex flex-wrap justify-center gap-8 mt-12">
+            {savedNews.map((news) => (
+              <div
+                key={news.id}
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-[30%] xl:w-1/4"
+              >
+                <SavedNewsCard news={news} onRemove={handleConfirmRemove} />
+              </div>
+            ))}
           </div>
         )}
       </main>

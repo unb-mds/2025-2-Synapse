@@ -32,14 +32,16 @@ const HeaderFeedPage = ({ userEmail }) => {
   return (
     <>
       <header className="flex justify-between items-center p-6 bg-white border-b border-gray-300 relative">
-        {/* Lado esquerdo: Botão "Back" */}
-        <span>
-          <h1 className="text-3xl font-bold text-black font-rajdhani">
-            Synapse
-          </h1>
-        </span>
+        {/* Lado esquerdo: Synapse*/}
+        <Link to="/feed" onClick={() => setDropdownOpen(false)}>
+          <span>
+            <h1 className="text-3xl font-bold text-black font-rajdhani">
+              Synapse
+            </h1>
+          </span>
+        </Link>
 
-        {/* Lado direito: E-mail do usuário + seta + dropdown */}
+        {/* Lado direito: Dropdown */}
         <div className="relative">
           <button
             className="flex items-center rounded-md text-gray-800 hover:text-gray-600 focus:outline-none text-base font-montserrat"
@@ -60,6 +62,13 @@ const HeaderFeedPage = ({ userEmail }) => {
                 onClick={() => setDropdownOpen(false)}
               >
                 My Account
+              </Link>
+              <Link
+                to="/saved-news"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-100 font-montserrat"
+                onClick={() => setDropdownOpen(false)}
+              >
+                Saved News
               </Link>
               <hr className="border-gray-200" />
               <button

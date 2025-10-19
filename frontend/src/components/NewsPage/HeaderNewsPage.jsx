@@ -59,9 +59,7 @@ const HeaderNewsPage = () => {
         </Link>
 
         {/* Meio: Logo Synapse */}
-        <h1 className="text-lg font-bold text-black font-rajdhani">
-          Synapse
-        </h1>
+        <h1 className="text-lg font-bold text-black font-rajdhani">Synapse</h1>
 
         {/* Lado direito: Menu do usuário */}
         <div className="relative">
@@ -85,6 +83,15 @@ const HeaderNewsPage = () => {
               >
                 My Account
               </Link>
+              <button>
+                <Link
+                  to="/saved-news"
+                  className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 font-montserrat"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Saved News
+                </Link>
+              </button>
               <hr className="border-gray-200" />
               <button
                 onClick={handleLogout}

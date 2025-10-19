@@ -15,7 +15,8 @@ const SavedNewsCardSkeleton = () => {
         <div className="h-4 bg-gray-300 rounded w-1/2 mb-4"></div>
         {/* Resumo */}
         <div className="h-3 bg-gray-300 rounded w-full mb-2"></div>
-        <div className="h-3 bg-gray-300 rounded w-full"></div>
+        <div className="h-3 bg-gray-300 rounded w-full mb-2"></div>
+        <div className="h-3 bg-gray-300 rounded w-4/5"></div>
       </div>
     </div>
   );

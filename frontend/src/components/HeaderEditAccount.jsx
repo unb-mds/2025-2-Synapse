@@ -10,7 +10,11 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
-const HeaderEditAccount = ({ userEmail, backTo = "/feed", backText = "Back to feed" }) => {
+const HeaderEditAccount = ({
+  userEmail,
+  backTo = "/feed",
+  backText = "Back to feed",
+}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -43,9 +47,7 @@ const HeaderEditAccount = ({ userEmail, backTo = "/feed", backText = "Back to fe
         </Link>
 
         {/* Meio: Logo Synapse */}
-        <h1 className="text-lg font-bold text-black font-rajdhani">
-          Synapse
-        </h1>
+        <h1 className="text-lg font-bold text-black font-rajdhani">Synapse</h1>
 
         {/* Lado direito: E-mail do usuário + seta + dropdown */}
         <div className="relative">
@@ -68,6 +70,13 @@ const HeaderEditAccount = ({ userEmail, backTo = "/feed", backText = "Back to fe
                 onClick={() => setDropdownOpen(false)}
               >
                 My Account
+              </Link>
+              <Link
+                to="/saved-news"
+                className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 font-montserrat"
+                onClick={() => setDropdownOpen(false)}
+              >
+                Saved News
               </Link>
               <hr className="border-gray-200" />
               <button
