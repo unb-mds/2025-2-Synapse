@@ -37,3 +37,9 @@ def unfavorite_news(user_id, news_id):
 @news_bp.route("/topic/<int:topic_id>", methods=["GET"])
 def get_news_by_topic(topic_id: int):
     return news_controller.get_by_topic(topic_id)
+
+@news_bp.route("/saved", methods=["GET"])
+@jwt_required()
+@get_user_id_from_token
+def get_favorite_news(user_id):
+    return news_controller.get_favorite_news(user_id)

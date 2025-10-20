@@ -10,3 +10,6 @@ class UserNews():
 
     def unfavorite_news(self, user_id, news_id, is_favorite):
         return self.user_news_repo.remove_favorite(user_id, news_id, is_favorite)
+    
+    def get_favorite_news(self, user_id):
+        return self.get_favorites_by_user(user_id)

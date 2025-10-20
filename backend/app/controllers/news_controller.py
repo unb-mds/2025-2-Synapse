@@ -90,3 +90,20 @@ class NewsController:
                 "data": None,
                 "error": "Ocorreu um erro inesperado."
             }), 500
+
+    def get_favorite_news(self, user_id: int):
+        try:
+            news_data = self.user_news_service.get_favorite_news(user_id)
+            return jsonify({
+                "success": True,
+                "message": "Notícias favoritas obtida com sucesso.",
+                "data": news_data,
+                "error": None
+            }), 200
+        except NewsNotFoundError as e:
+            return jsonify({
+                "success": False,
+                "message": "Notícias favoritas não encontrada.",
+                "data": None,
+                "error": str(e)
+            }), 404
