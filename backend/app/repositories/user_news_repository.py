@@ -4,6 +4,7 @@ import logging
 
 from app.extensions import db
 from app.entities.user_news_entity import UserNewsEntity
+from app.entities.news_entity import NewsEntity
 from app.models.user_news import UserNews
 
 class UserNewsRepository:
@@ -65,20 +66,31 @@ class UserNewsRepository:
 
     def get_favorites_by_user(self, user_id: int) -> list[UserNews]:
         try:
-            stmt = select(UserNewsEntity).where(
-                UserNewsEntity.user_id == user_id,
-                UserNewsEntity.is_favorite == True
-            )
-            entities = self.session.execute(stmt).scalars().all()
-            return [
-                UserNews(
-                    id=e.id,
-                    user_id=e.user_id,
-                    news_id=e.news_id,
-                    is_favorite=e.is_favorite
+            stmt = (
+                select(NewsEntity)
+                .join(UserNewsEntity, UserNewsEntity.news_id == NewsEntity.id)
+                .where(
+                    UserNewsEntity.user_id == user_id,
+                    UserNewsEntity.is_favorite == True
                 )
-                for e in entities
+            )
+
+            news_entities = self.session.execute(stmt).scalars().all()
+
+            news_list = [
+                {
+                    "id": n.id,
+                    "title": n.title,
+                    "description": n.description,
+                    "content": n.content,
+                    "published_at": getattr(n, "published_at", None),
+                    "is_favorite": True,  # já sabemos que são favoritos
+                }
+                for n in news_entities
             ]
+
+            return news_list
+
         except SQLAlchemyError as e:
-            logging.error(f"Erro ao buscar favoritos para user_id={user_id}: {e}", exc_info=True)
+            logging.error(f"Erro ao buscar notícias favoritas para user_id={user_id}: {e}", exc_info=True)
             raise
