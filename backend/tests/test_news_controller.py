@@ -154,3 +154,58 @@ def test_get_favorite_news_not_found(controller, mock_news_service):
     assert status_code == 404
     assert response.json["success"] is False
     assert response.json["message"] == "Notícias favoritas não encontrada."
+
+def test_save_history_news_success(controller, mock_news_service):
+    user_id, news_id = 1, 10
+    response, status_code = controller.save_history_news(user_id, news_id)
+    assert status_code == 200
+    assert response.json["success"] is True
+    assert response.json["message"] == "Noticia acessada."
+    mock_news_service.save_history.assert_called_once_with(user_id, news_id)
+
+def test_save_history_news_generic_error(controller, mock_news_service):
+    user_id, news_id = 1, 10
+    mock_news_service.save_history.side_effect = Exception("DB Error")
+    response, status_code = controller.save_history_news(user_id, news_id)
+    assert status_code == 500
+    assert response.json["success"] is False
+    assert response.json["message"] == "Erro salvar acesso a noticia."
+
+def test_get_history_news_success(controller, mock_news_service, app_context):
+    user_id = 1
+    with app_context.test_request_context('/?page=2&per_page=5'):
+        mock_news_service.get_history_news.return_value = {"history": [], "total": 0, "pages": 0}
+        response, status_code = controller.get_history_news(user_id)
+        assert status_code == 200
+        assert response.json["success"] is True
+        assert response.json["message"] == "Histórico de notícias obtido com sucesso."
+        mock_news_service.get_history_news.assert_called_once_with(user_id, 2, 5)
+
+def test_get_history_news_default_pagination(controller, mock_news_service, app_context):
+    user_id = 1
+    with app_context.test_request_context('/'):
+        mock_news_service.get_history_news.return_value = {"history": [], "total": 0, "pages": 0}
+        response, status_code = controller.get_history_news(user_id)
+        assert status_code == 200
+        assert response.json["success"] is True
+        mock_news_service.get_history_news.assert_called_once_with(user_id, 1, 10)
+
+def test_get_history_news_invalid_pagination_resets_to_defaults(controller, mock_news_service, app_context):
+    user_id = 1
+    # Testa com página negativa e per_page excessivo
+    with app_context.test_request_context('/?page=-1&per_page=200'):
+        mock_news_service.get_history_news.return_value = {"history": [], "total": 0, "pages": 0}
+        response, status_code = controller.get_history_news(user_id)
+        assert status_code == 200
+        assert response.json["success"] is True
+        # Verifica se a página foi corrigida para 1 e per_page para 10 (o default)
+        mock_news_service.get_history_news.assert_called_once_with(user_id, 1, 10)
+
+def test_get_history_news_generic_error(controller, mock_news_service, app_context):
+    user_id = 1
+    with app_context.test_request_context():
+        mock_news_service.get_history_news.side_effect = Exception("DB Error")
+        response, status_code = controller.get_history_news(user_id)
+        assert status_code == 500
+        assert response.json["success"] is False
+        assert response.json["message"] == "Erro ao buscar histórico de notícias."

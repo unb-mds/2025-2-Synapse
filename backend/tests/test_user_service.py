@@ -8,6 +8,9 @@ from app.models.exceptions import (
     InvalidPasswordError,
     UserNotFoundError,
     EmailInUseError,
+    NewsNotFoundError,
+    NewsAlreadyFavoritedError,
+    NewsNotFavoritedError,
 )
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -357,13 +360,71 @@ def test_change_password_missing_password_raises_error(user_service, mock_user_r
     mock_user_repo.find_by_id.assert_not_called()
     mock_user_repo.update.assert_not_called()
     
+def test_favorite_news_successfully(user_service, mock_user_repo):
+    """Testa se a chamada para favoritar uma notícia é bem-sucedida."""
+    user_id, news_id = 1, 100
+    mock_user_repo.add_favorite_news.return_value = None
     
+    user_service.favorite_news(user_id, news_id)
+    
+    mock_user_repo.add_favorite_news.assert_called_once_with(user_id, news_id)
 
+@pytest.mark.parametrize("expected_exception", [
+    UserNotFoundError,
+    NewsNotFoundError,
+    NewsAlreadyFavoritedError
+])
+def test_favorite_news_raises_known_exceptions(user_service, mock_user_repo, expected_exception):
+    """Testa se exceções conhecidas do repositório são propagadas corretamente."""
+    user_id, news_id = 1, 100
+    mock_user_repo.add_favorite_news.side_effect = expected_exception("Error")
+    
+    with pytest.raises(expected_exception):
+        user_service.favorite_news(user_id, news_id)
+        
+    mock_user_repo.add_favorite_news.assert_called_once_with(user_id, news_id)
 
+def test_favorite_news_raises_generic_exception_on_unexpected_error(user_service, mock_user_repo):
+    """Testa se uma exceção genérica é levantada para erros inesperados."""
+    user_id, news_id = 1, 100
+    mock_user_repo.add_favorite_news.side_effect = SQLAlchemyError("DB Connection Error")
+    
+    with pytest.raises(Exception, match="Ocorreu um erro interno ao favoritar a notícia."):
+        user_service.favorite_news(user_id, news_id)
+        
+    mock_user_repo.add_favorite_news.assert_called_once_with(user_id, news_id)
+
+def test_unfavorite_news_successfully(user_service, mock_user_repo):
+    """Testa se a chamada para desfavoritar uma notícia é bem-sucedida."""
+    user_id, news_id = 1, 100
+    mock_user_repo.remove_favorite_news.return_value = None
+    
+    user_service.unfavorite_news(user_id, news_id)
+    
+    mock_user_repo.remove_favorite_news.assert_called_once_with(user_id, news_id)
+
+@pytest.mark.parametrize("expected_exception", [
+    UserNotFoundError,
+    NewsNotFavoritedError
+])
+def test_unfavorite_news_raises_known_exceptions(user_service, mock_user_repo, expected_exception):
+    """Testa se exceções conhecidas do repositório são propagadas ao desfavoritar."""
+    user_id, news_id = 1, 100
+    mock_user_repo.remove_favorite_news.side_effect = expected_exception("Error")
+    
+    with pytest.raises(expected_exception):
+        user_service.unfavorite_news(user_id, news_id)
+        
+    mock_user_repo.remove_favorite_news.assert_called_once_with(user_id, news_id)
+
+def test_unfavorite_news_raises_generic_exception_on_unexpected_error(user_service, mock_user_repo):
+    """Testa se uma exceção genérica é levantada para erros inesperados ao desfavoritar."""
+    user_id, news_id = 1, 100
+    mock_user_repo.remove_favorite_news.side_effect = Exception("Unexpected Error")
+    
+    with pytest.raises(Exception, match="Ocorreu um erro interno ao desfavoritar a notícia."):
+        user_service.unfavorite_news(user_id, news_id)
+        
+    mock_user_repo.remove_favorite_news.assert_called_once_with(user_id, news_id)
     
     
-
-
-
-   
-       

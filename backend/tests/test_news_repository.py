@@ -245,6 +245,23 @@ def test_find_by_url_not_found(news_repository, mock_session):
     assert found_news is None
 
 
+def test_find_by_url_exact_match(news_repository, mock_session, sample_news_entity, sample_news_model):
+    """Testa encontrar uma notícia por URL quando há uma correspondência exata na primeira tentativa."""
+    # Arrange
+    # Simula que a busca exata encontra a entidade
+    mock_session.execute.return_value.scalar_one_or_none.return_value = sample_news_entity
+    
+    # Mockar a conversão de volta para o modelo de negócio
+    with patch('app.models.news.News.from_entity', return_value=sample_news_model):
+        # Act
+        found_news = news_repository.find_by_url("http://www.example.com/news/1")
+
+    # Assert
+    mock_session.execute.assert_called_once()
+    assert found_news is not None
+    assert found_news.id == sample_news_model.id
+
+
 def test_list_all(news_repository, mock_session, sample_news_entity, sample_news_model):
     """Testa a listagem de todas as notícias."""
     # Arrange
@@ -326,6 +343,21 @@ def test_find_by_topic(news_repository, mock_session, sample_news_entity, sample
     assert news_list[0].topic_id == sample_news_model.topic_id
 
 
+def test_find_by_topic_empty(news_repository, mock_session):
+    """Testa a busca por um tópico que não tem notícias."""
+    # Arrange
+    mock_result = MagicMock()
+    mock_result.all.return_value = []
+    mock_session.execute.return_value = mock_result
+
+    # Act
+    news_list = news_repository.find_by_topic(topic_id=99, user_id=10)
+
+    # Assert
+    mock_session.execute.assert_called_once()
+    assert news_list == []
+
+
 def test_count_all(news_repository, mock_session):
     """Testa a contagem de todas as notícias."""
     # Arrange
@@ -337,6 +369,14 @@ def test_count_all(news_repository, mock_session):
     # Assert
     assert count == 150
     mock_session.execute.assert_called_once()
+
+
+def test_count_all_sqlalchemy_error(news_repository, mock_session):
+    """Testa o tratamento de erro do SQLAlchemy ao contar todas as notícias."""
+    mock_session.execute.side_effect = SQLAlchemyError("Simulated DB error")
+    with pytest.raises(SQLAlchemyError):
+        news_repository.count_all()
+
 
 def test_count_by_topic(news_repository, mock_session):
     """Testa a contagem de notícias por tópico."""
@@ -351,6 +391,13 @@ def test_count_by_topic(news_repository, mock_session):
     # Assert
     mock_session.execute.assert_called_once()
     assert count == 5
+
+
+def test_count_by_topic_sqlalchemy_error(news_repository, mock_session):
+    """Testa o tratamento de erro do SQLAlchemy ao contar notícias por tópico."""
+    mock_session.execute.side_effect = SQLAlchemyError("Simulated DB error")
+    with pytest.raises(SQLAlchemyError):
+        news_repository.count_by_topic(topic_id=1)
 
 
 def test_list_favorites_by_user(news_repository, mock_session, sample_news_entity, sample_news_model):
@@ -372,6 +419,21 @@ def test_list_favorites_by_user(news_repository, mock_session, sample_news_entit
     mock_session.execute.assert_called_once()
     assert len(news_list) == 1
     assert news_list[0].id == sample_news_model.id
+
+
+def test_list_favorites_by_user_empty(news_repository, mock_session):
+    """Testa a listagem de notícias favoritas quando o usuário não tem nenhuma."""
+    # Arrange
+    mock_result = MagicMock()
+    mock_result.scalars.return_value.all.return_value = []
+    mock_session.execute.return_value = mock_result
+
+    # Act
+    news_list = news_repository.list_favorites_by_user(user_id=10)
+
+    # Assert
+    mock_session.execute.assert_called_once()
+    assert news_list == []
 
 
 def test_get_recent_news_with_base_score(news_repository, mock_session, sample_news_entity, sample_news_model):
@@ -439,3 +501,27 @@ def test_get_recent_news_with_base_score_no_preferred_source(news_repository, mo
     assert scored_news.is_favorited is False
     assert scored_news.time_score == 75  # "2-5 dias"
     assert scored_news.source_score == 0 # Fonte não preferida
+
+
+def test_get_recent_news_with_base_score_empty(news_repository, mock_session):
+    """Testa a busca de notícias recentes quando nenhuma é encontrada."""
+    # Arrange
+    mock_result = MagicMock()
+    mock_result.all.return_value = []
+    mock_session.execute.return_value = mock_result
+
+    # Act
+    news_list = news_repository.get_recent_news_with_base_score(user_id=10, preferred_source_ids=[], days_limit=5)
+
+    # Assert
+    mock_session.execute.assert_called_once()
+    assert news_list == []
+
+
+def test_get_recent_news_with_base_score_sqlalchemy_error(news_repository, mock_session):
+    """Testa o tratamento de erro do SQLAlchemy na busca de notícias com score."""
+    # Arrange
+    mock_session.execute.side_effect = SQLAlchemyError("Simulated DB error")
+
+    with pytest.raises(SQLAlchemyError):
+        news_repository.get_recent_news_with_base_score(user_id=10, preferred_source_ids=[], days_limit=5)

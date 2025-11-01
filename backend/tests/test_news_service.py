@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock, patch
 from datetime import datetime
-import math
+import math, logging
 
 from app.services.news_service import NewsService
 from app.models.exceptions import NewsNotFoundError
@@ -21,14 +21,20 @@ def mock_topic_repo():
 def mock_user_news_source_repo():
     return MagicMock()
 
+# Fixture para mockar o UserReadHistoryRepository
+@pytest.fixture
+def mock_user_history_repo():
+    return MagicMock()
+
 # Fixture para criar a instância do NewsService com dependências mockadas
 @pytest.fixture
-def news_service(mock_news_repo, mock_topic_repo, mock_user_news_source_repo):
+def news_service(mock_news_repo, mock_topic_repo, mock_user_news_source_repo, mock_user_history_repo):
     with patch('app.services.news_service.UserCustomTopicService') as mock_custom_topic_service:
         service = NewsService(
             news_repo=mock_news_repo,
             topic_repo=mock_topic_repo,
-            user_news_source_repo=mock_user_news_source_repo
+            user_news_source_repo=mock_user_news_source_repo,
+            user_history_repo=mock_user_history_repo
         )
         # Substituir a instância real pela mockada
         service.user_custom_topic_service = mock_custom_topic_service()
@@ -120,6 +126,22 @@ def test_get_news_by_topic(news_service, mock_news_repo, sample_news):
     assert result["pagination"]["total"] == total_count
 
 
+def test_get_news_by_topic_empty(news_service, mock_news_repo):
+    """Testa a busca por um tópico que não tem notícias."""
+    # Arrange
+    mock_news_repo.find_by_topic.return_value = []
+    mock_news_repo.count_by_topic.return_value = 0
+
+    # Act
+    result = news_service.get_news_by_topic(topic_id=99, page=1, per_page=10, user_id=1)
+
+    # Assert
+    mock_news_repo.find_by_topic.assert_called_once_with(99, 1, 10, 1)
+    mock_news_repo.count_by_topic.assert_called_once_with(99)
+    assert len(result["news"]) == 0
+    assert result["pagination"]["total"] == 0
+    assert result["pagination"]["pages"] == 1 # Deve ser 1 mesmo com 0 resultados
+
 def test_get_favorite_news(news_service, mock_news_repo, sample_news):
     """Testa a listagem de notícias favoritas de um usuário."""
     # Arrange
@@ -139,6 +161,26 @@ def test_get_favorite_news(news_service, mock_news_repo, sample_news):
     assert len(result["news"]) == 1
     assert result["news"][0]["is_favorited"] is True
     assert result["pagination"]["total"] == 2
+
+
+def test_get_favorite_news_empty(news_service, mock_news_repo):
+    """Testa a listagem de favoritos para um usuário sem notícias favoritas."""
+    # Arrange
+    mock_news_repo.list_favorites_by_user.side_effect = [
+        [], # Paginated
+        []  # All for count
+    ]
+
+    # Act
+    result = news_service.get_favorite_news(user_id=1, page=1, per_page=10)
+
+    # Assert
+    assert mock_news_repo.list_favorites_by_user.call_count == 2
+    assert len(result["news"]) == 0
+    assert result["pagination"]["total"] == 0
+    assert result["pagination"]["page"] == 1
+    assert result["pagination"]["pages"] == 1
+
 
 
 def test_calculate_topic_score():
@@ -273,3 +315,107 @@ def test_get_for_you_news_exception_fallback(news_service, mock_news_repo, mock_
         # Verifica se o resultado é o do fallback
         assert result["news"][0]["id"] == 99
 
+
+def test_save_history_success(news_service, mock_user_history_repo):
+    """Testa se save_history chama o repositório corretamente."""
+    # Arrange
+    mock_user_history_repo.create.return_value = {"user_id": 1, "news_id": 100}
+    
+    # Força o service a usar o mock, já que o __init__ o ignora.
+    with patch.object(news_service, 'user_history_repo', mock_user_history_repo):
+        # Act
+        result = news_service.save_history(user_id=1, news_id=100)
+
+        # Assert
+        mock_user_history_repo.create.assert_called_once_with(1, 100)
+        assert result is not None
+
+
+def test_save_history_raises_not_found(news_service, mock_user_history_repo):
+    """Testa se save_history propaga exceções de 'não encontrado'."""
+    # Arrange
+    mock_user_history_repo.create.side_effect = NewsNotFoundError("Notícia não encontrada")
+
+    with patch.object(news_service, 'user_history_repo', mock_user_history_repo):
+        # Act & Assert
+        with pytest.raises(NewsNotFoundError):
+            news_service.save_history(user_id=1, news_id=999)
+
+
+def test_save_history_generic_exception(news_service, mock_user_history_repo):
+    """Testa o tratamento de exceção genérica em save_history."""
+    # Arrange
+    mock_user_history_repo.create.side_effect = Exception("Erro de banco de dados")
+
+    with patch.object(news_service, 'user_history_repo', mock_user_history_repo):
+        # Act & Assert
+        with pytest.raises(Exception, match="Ocorreu um erro interno ao marcar noticia como lida."):
+            news_service.save_history(user_id=1, news_id=100)
+
+
+def test_get_history_news_success(news_service, mock_user_history_repo, sample_news):
+    """Testa a busca bem-sucedida do histórico de notícias."""
+    # Arrange
+    history_entity = MagicMock()
+    history_entity.read_at = datetime.now()
+
+    # O repositório retorna uma tupla (history_entity, news_entity)
+    mock_user_history_repo.get_user_history.return_value = ([(history_entity, sample_news)], 1)
+
+    # Mockar a conversão de entidade, a checagem de favorito (que usa db.session)
+    # e forçar o uso do repo mockado.
+    with patch('app.services.news_service.News.from_entity', return_value=sample_news), \
+         patch('app.services.news_service.db.session.query') as mock_query, \
+         patch.object(news_service, 'user_history_repo', mock_user_history_repo):
+        
+        # Simular que a notícia não é favorita
+        mock_query.return_value.filter_by.return_value.first.return_value = None
+
+        # Act
+        result = news_service.get_history_news(user_id=1, page=1, per_page=10)
+
+    # Assert
+    mock_user_history_repo.get_user_history.assert_called_once_with(user_id=1, page=1, per_page=10)
+    assert len(result["news"]) == 1
+    news_item = result["news"][0]
+    assert news_item["id"] == sample_news.id
+    assert news_item["title"] == sample_news.title
+    assert "read_at" in news_item
+    assert news_item["is_favorited"] is False
+    assert result["pagination"]["total"] == 1
+
+
+def test_get_history_news_is_favorited(news_service, mock_user_history_repo, sample_news):
+    """Testa se o histórico de notícias identifica corretamente uma notícia favoritada."""
+    # Arrange
+    history_entity = MagicMock(read_at=datetime.now())
+    mock_user_history_repo.get_user_history.return_value = ([(history_entity, sample_news)], 1)
+
+    with patch('app.services.news_service.News.from_entity', return_value=sample_news), \
+         patch('app.services.news_service.db.session.query') as mock_query, \
+         patch.object(news_service, 'user_history_repo', mock_user_history_repo):
+        
+        # Simular que a notícia É favorita
+        mock_query.return_value.filter_by.return_value.first.return_value = MagicMock()
+        
+        # Act
+        result = news_service.get_history_news(user_id=1)
+
+    # Assert
+    assert len(result["news"]) == 1
+    assert result["news"][0]["is_favorited"] is True
+
+
+def test_get_history_news_exception(news_service, mock_user_history_repo):
+    """Testa o tratamento de exceção ao buscar o histórico."""
+    # Arrange
+    db_error = Exception("DB Error")
+    mock_user_history_repo.get_user_history.side_effect = db_error
+    
+    with patch.object(news_service, 'user_history_repo', mock_user_history_repo):
+        # Silenciar o log de erro durante o teste
+        logging.disable(logging.ERROR)
+        # Act & Assert
+        with pytest.raises(Exception, match=f"Erro ao buscar histórico: {db_error}"):
+            news_service.get_history_news(user_id=1)
+        logging.disable(logging.NOTSET) # Reativar logs
