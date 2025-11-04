@@ -1,61 +1,51 @@
 import os
 import logging
-from mailersend import MailerSendClient, EmailBuilder
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 class MailService:
     def __init__(self):
-        self.mailersend_api_key = os.getenv('MAILERSEND_API_KEY')
-        self.sender_email = os.getenv('MAILERSEND_FROM_EMAIL')
-        self.sender_name = os.getenv('MAILERSEND_FROM_NAME')
+        # self.sender_email = os.getenv('GMAIL_SENDER_EMAIL')
+        # self.sender_password = os.getenv('GMAIL_APP_PASSWORD')
 
-        if not self.mailersend_api_key:
-            logging.error(
-                "Erro de Configuração: A chave MAILERSEND_API_KEY não foi configurada no ambiente do container."
-            )
-        self.ms = MailerSendClient(api_key=self.mailersend_api_key)
+        # if not self.sender_email or not self.sender_password:
+        #     logging.error(
+        #         "Erro de Configuração: As variáveis GMAIL_SENDER_EMAIL e GMAIL_APP_PASSWORD não foram configuradas."
+        #     )
+    
+        self.smtp_host = 'smtp.mailtrap.io'
+        self.smtp_port = 2525
+        self.smtp_user = os.getenv('MAILTRAP_USER')
+        self.smtp_password = os.getenv('MAILTRAP_PASSWORD')
+
+        if not self.smtp_user or not self.smtp_password:
+            logging.error("Variáveis MAILTRAP_USER ou MAILTRAP_PASSWORD não configuradas.")
+            raise EnvironmentError("Credenciais Mailtrap não configuradas no ambiente.")
 
     def sendemail(self, recipient_email: str, recipient_name: str,
-                  subject: str, html_content: str) -> bool:
-        if not self.mailersend_api_key:
-            logging.error(
-                f"Falha ao tentar enviar e-mail para {recipient_email}. "
-                "Chave da API MailerSend ausente."
-            )
-            return False
-
+              subject: str, html_content: str) -> bool:
         try:
-            email = (
-                EmailBuilder()
-                .from_email(self.sender_email, self.sender_name)
-                .to_many([
-                    {"email": recipient_email, "name": recipient_name}
-                ])
-                .subject(subject)
-                .html(html_content)
-                .text("Versão em texto simples do seu email.")
-                .build()
-            )
+            message = MIMEMultipart('alternative')
+            message['Subject'] = subject
+            message['From'] = self.smtp_user
+            message['To'] = recipient_email
 
-            response = self.ms.emails.send(email)
+            part = MIMEText(html_content, 'html')
+            message.attach(part)
 
-            if response.status_code in (200, 202):
-                logging.info(f"E-mail enviado com sucesso para: {recipient_email}")
-                return True
-            else:
-                status = response.status_code
-                try:
-                    body = response.json()
-                except Exception:
-                    body = None
-                logging.error(
-                    f"Erro de API ao enviar e-mail para {recipient_email}. "
-                    f"Status: {status}. Detalhes: {body}"
-                )
-                return False
+            server = smtplib.SMTP(self.smtp_host, self.smtp_port)
+            server.starttls()
+            server.login(self.smtp_user, self.smtp_password)
+            server.sendmail(self.smtp_user, recipient_email, message.as_string())
+            server.quit()
+
+            logging.info(f"E-mail enviado com sucesso para: {recipient_email}")
+            return True
 
         except Exception as e:
             logging.error(
-                f"Erro de Conexão/API inesperado ao enviar e-mail para {recipient_email}: {e}",
+                f"Erro ao enviar e-mail para {recipient_email}: {e}",
                 exc_info=True
             )
             return False

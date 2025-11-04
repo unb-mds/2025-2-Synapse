@@ -20,20 +20,54 @@ def send_newsletter_job():
     app = create_app()
 
     conteudo_email =  f"""
-                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; background-color: #f7f7f7;">
-                        <header style="background-color: #3B82F6; color: white; padding: 20px; text-align: center;">
-                            <h2 style="margin: 0; font-size: 1.5em;">Synapse News - Teste de Envio</h2>
-                        </header>
-                        <main style="padding: 20px; color: #333;">
-                            <p style="font-size: 1.1em;"><strong>Olá!</strong></p>
-                            
-                            <p>Este é um e-mail de teste de Newsletter.</p>
-                        </main>
-                        <footer style="background-color: #E5E7EB; color: #6B7280; text-align: center; padding: 10px; font-size: 0.8em;">
-                            Este e-mail foi enviado automaticamente.
-                        </footer>
-                    </div>
-                    """
+                        <!DOCTYPE html>
+                            <html lang="en" style="background-color:#fafafa;">
+                            <head>
+                            <meta charset="UTF-8">
+                            <title>Synapse Newsletter</title>
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                            </head>
+                            <body style="margin:0;padding:0;font-family: Arial, sans-serif; background-color:#fafafa; color: #181818;">
+                            <div style="max-width: 518px;margin:40px auto;background:#fff;box-shadow:0 2px 8px rgba(60,60,67,0.07);border-radius:10px;padding:40px 20px;">
+                                <!-- Header -->
+                                <div style="text-align:center;margin-bottom:40px;">
+                                <span style="display:block;font-weight:700;font-size:44px;letter-spacing:-2px;line-height:0.8;margin-bottom:5px;">Synapse</span>
+                                <span style="display:block;font-size:22px;letter-spacing:1px;color:#666;">Newsletter</span>
+                                </div>
+                                <!-- Intro box -->
+                                <div style="border:2px solid #222; border-radius:7px; background:#f7f7f7; padding:18px 24px; margin-bottom:36px;">
+                                <p style="margin:0 0 12px 0;">Hi [name],</p>
+                                <p style="margin:0 0 12px 0;">Welcome to the Synapse newsletter.</p>
+                                <p style="margin:0;">[Introdução]</p>
+                                </div>
+
+                                <!-- News Section (repeat block below for each news) -->
+                                <div>
+                                <!-- Example for 1st news, copy this <section> and paste for each news -->
+                                <section style="margin-bottom:38px;">
+                                    <div style="margin-bottom:8px;">
+                                    <span style="font-size:12px;letter-spacing:1px;color:#222;text-transform:uppercase;font-weight:500; border-bottom:1px solid #999;padding-bottom:2px;">TECHNOLOGY</span>
+                                    </div>
+                                    <h2 style="margin:0 0 8px 0;font-size:20px;line-height:1.2;font-weight:700;">What's the big deal about AI data centres?</h2>
+                                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=518&q=80" alt="AI Data Centre" style="width:100%;max-width:445px;border-radius:6px;margin-bottom:15px;display:block;" />
+                                    <p style="color:#444;margin:0 0 10px 0;font-size:15px;line-height:1.5;">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                    <p style="color:#444;margin:0 0 10px 0;font-size:15px;line-height:1.5;">
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem dolor sit amet, consectetur adipiscing elit.
+                                    </p>
+                                    <div style="font-size:12px;color:#888;margin-top:8px;border-top:1px solid #eee;padding-top:7px;">
+                                    BBC News | 22 September 2025
+                                    </div>
+                                </section>
+                                <!-- FIM 1º BLOCO NOTÍCIA -->
+                                <!-- Cole mais 4 blocos como o acima -->
+                                </div>
+                                <!-- Fim das notícias -->
+                            </div>
+                        </body>
+                    </html>
+                 """
     
     with app.app_context():
         logging.info("=" * 80)
