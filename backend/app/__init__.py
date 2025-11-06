@@ -29,6 +29,8 @@ def create_app(config_overrides=None):
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
     app.config["JWT_COOKIE_CSRF_PROTECT"] = True
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
+    app.config["MAILTRAP_USER"]= os.getenv("MAILTRAP_USER")
+    app.config["MAILTRAP_PASSWORD"]= os.getenv("MAILTRAP_PASSWORD")
     
     if config_overrides:
         app.config.update(config_overrides)

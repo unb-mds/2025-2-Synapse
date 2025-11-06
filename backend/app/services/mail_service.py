@@ -19,6 +19,8 @@ class MailService:
         self.smtp_user = os.getenv('MAILTRAP_USER')
         self.smtp_password = os.getenv('MAILTRAP_PASSWORD')
 
+        print(self.smtp_user, self.smtp_password)
+
         if not self.smtp_user or not self.smtp_password:
             logging.error("Variáveis MAILTRAP_USER ou MAILTRAP_PASSWORD não configuradas.")
             raise EnvironmentError("Credenciais Mailtrap não configuradas no ambiente.")

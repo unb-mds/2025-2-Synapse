@@ -14,4 +14,4 @@ RUN mv /app/crontab /etc/cron.d/news-collection-job && \
  
 RUN touch /var/log/cron.log
 
-CMD ["/bin/sh", "-c", "printenv | grep -E 'DATABASE_URL|GNEWS_API_KEY' > /etc/environment && echo 'PYTHONPATH=/app' >> /etc/environment && cron && tail -f /var/log/cron.log"]
+CMD ["/bin/sh", "-c", "printenv | grep -E 'DATABASE_URL|GNEWS_API_KEY|MAILTRAP_USER|MAILTRAP_PASSWORD' > /etc/environment && echo 'PYTHONPATH=/app' >> /etc/environment && cron && tail -f /var/log/cron.log"]

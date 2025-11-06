@@ -110,6 +110,11 @@ def gerar_texto_intro(ai_service: AIService, user, news_data) -> str:
 def send_newsletter_job():
     app = create_app()
 
+    import os
+    logging.info(f"MAILTRAP_USER: {os.getenv('MAILTRAP_USER')}")
+    logging.info(f"MAILTRAP_PASSWORD set? {'Sim' if os.getenv('MAILTRAP_PASSWORD') else 'Não'}")
+
+
     with app.app_context():
         logging.info("=" * 80)
         logging.info("JOB DE ENVIO DE NEWSLETTER INICIADO")
