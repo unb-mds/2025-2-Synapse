@@ -384,3 +384,50 @@ class NewsService():
         except Exception as e:
             logging.error(f"Erro ao buscar histórico de leitura: {e}", exc_info=True)
             raise Exception(f"Erro ao buscar histórico: {str(e)}")
+
+    # get for you news adaptada para retornar noticias em um formato diferente 
+    def get_news_to_email(self, user_id: int, page: int = 1, per_page: int = 10):
+        try:
+            preferred_source_ids = self.user_news_source_repo.get_user_preferred_source_ids(user_id)
+            custom_topics = self.user_custom_topic_service.get_user_preferred_topics(user_id)
+
+            recent_news = self.news_repo.get_recent_news_with_base_score(
+                user_id=user_id,
+                preferred_source_ids=preferred_source_ids,
+                days_limit=15
+            )
+
+            for news in recent_news:
+                base_score = (news.time_score or 0) + (news.source_score or 0)
+                topic_score = self._calculate_topic_score(news, custom_topics)
+                setattr(news, 'total_score', base_score + topic_score)
+
+            sorted_news = sorted(
+                recent_news,
+                key=lambda x: (getattr(x, 'total_score', 0), x.published_at),
+                reverse=True
+            )
+
+            total_count = len(sorted_news)
+            start_index = (page - 1) * per_page
+            end_index = start_index + per_page
+            paginated_news = sorted_news[start_index:end_index]
+
+            news_list = []
+            for news in paginated_news:
+                news_dict = {
+                    "category": getattr(news, "topic_name", "Geral"),
+                    "title": news.title,
+                    "img_url": news.image_url or "", 
+                    "summary": news.description or "",
+                    "source": getattr(news, "source_name", "Fonte Desconhecida"),
+                    "date": news.published_at.strftime("%d/%m/%Y") if news.published_at else "",
+                    "url": news.url
+                }
+                news_list.append(news_dict)
+
+            return news_list
+
+        except Exception as e:
+            print(f"Erro no feed personalizado: {e}")
+            return []
