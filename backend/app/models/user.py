@@ -15,16 +15,17 @@ class User:
         id: Optional[int] = None,
         birthdate: Optional[date] = None,
         is_hashed: bool = False,
+        newsletter: bool = False,
     ):
         self.id = id
         self.full_name = full_name
         self.email = email
         self.birthdate = birthdate
-
         if is_hashed:
             self._password_hash = password
         else:
             self.password = password
+        self.newsletter = newsletter
 
     @property
     def full_name(self) -> str:
@@ -83,7 +84,8 @@ class User:
             email=entity.email,
             birthdate=entity.birthdate,
             password=entity.password_hash, 
-            is_hashed=True
+            is_hashed=True,
+            newsletter=entity.newsletter
         )
 
     def to_orm(self) -> UserEntity:
@@ -92,7 +94,8 @@ class User:
             full_name=self.full_name,
             email=self.email,
             birthdate=self.birthdate,
-            password_hash=self._password_hash
+            password_hash=self._password_hash,
+            newsletter=self.newsletter
         )
 
     def __repr__(self) -> str:

@@ -11,6 +11,7 @@ class UserEntity(db.Model):
     email: Mapped[str] = mapped_column(db.String(120), unique=True, nullable=False)
     birthdate: Mapped[Optional[date]] = mapped_column(db.Date, nullable=True)
     password_hash: Mapped[str] = mapped_column(db.String(200), nullable=False)
+    newsletter: Mapped[bool] = mapped_column(db.Boolean, nullable=False)
     created_at: Mapped[datetime] = mapped_column(db.DateTime(timezone=True), nullable=False, server_default=db.func.now())
 
     saved_news = relationship(

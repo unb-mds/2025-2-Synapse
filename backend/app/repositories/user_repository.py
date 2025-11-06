@@ -53,6 +53,12 @@ class UserRepository:
         stmt = select(UserEntity)
         entities = self.session.execute(stmt).scalars().all()
         return [User.from_entity(entity) for entity in entities]
+    
+    def get_users_to_newsletter(self) -> list[User]:
+        stmt = select(UserEntity).where(UserEntity.newsletter.is_(True))
+        entities = self.session.execute(stmt).scalars().all()
+        
+        return [User.from_entity(entity) for entity in entities]
 
     def add_favorite_news(self, user_id: int, news_id: int):
         """Adiciona uma notícia à lista de favoritos de um usuário."""

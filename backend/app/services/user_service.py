@@ -15,7 +15,8 @@ class UserService:
                 full_name=data["full_name"],
                 email=data["email"],
                 password=data["password"],
-                birthdate=data.get("birthdate")
+                birthdate=data.get("birthdate"),
+                newsletter=data.get("newsletter")
             )
         except (UserValidationError, InvalidPasswordError) as e:
             raise ValueError(str(e)) from e
@@ -56,6 +57,8 @@ class UserService:
         try:
             if "full_name" in data:
                 user.full_name = data["full_name"]
+            if "newsletter" in data:
+                user.newsletter = data["newsletter"]
             if "birthdate" in data:
                 birthdate_str = data.get("birthdate")
                 if birthdate_str:
