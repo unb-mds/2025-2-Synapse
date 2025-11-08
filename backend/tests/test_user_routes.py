@@ -5,7 +5,8 @@ import re
 valid_user_data = {
     "full_name": "Test User",
     "email": "test.user@example.com",
-    "password": "StrongPassword123"
+    "password": "StrongPassword123",
+    "newsletter": False
 }
 
 def get_auth_client(client, user_data):
@@ -170,15 +171,16 @@ def test_update_profile_with_existing_email_fails(client):
     user1_data = {
         "full_name": "User One",
         "email": "user1@example.com",
-        "password": "Password123"
-    
+        "password": "Password123",
+        "newsletter": False
     }
     client.post('/users/register', data=json.dumps(user1_data), content_type='application/json')
     
     user2_data = {
         "full_name": "User Two",
         "email": "user2@example.com",
-        "password": "Password123"
+        "password": "Password123",
+        "newsletter": False
     }
     auth_client, headers = get_auth_client(client, user2_data)
     

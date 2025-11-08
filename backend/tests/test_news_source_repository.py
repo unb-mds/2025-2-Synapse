@@ -83,7 +83,7 @@ def test_list_all_empty(news_source_repo, db):
     assert news_source_repo.list_all() == []
 
 def test_list_by_user_id(news_source_repo, db):
-    user = UserEntity(full_name="Test User", email="user@test.com")
+    user = UserEntity(full_name="Test User", email="user@test.com", newsletter=False)
     user.password_hash = "hash"
     s1 = NewsSourceEntity(name="S1", url="http://s1.com")
     s2 = NewsSourceEntity(name="S2", url="http://s2.com")
@@ -97,13 +97,13 @@ def test_list_by_user_id(news_source_repo, db):
     assert user_sources[0].name == "S1"
 
 def test_list_by_user_id_empty(news_source_repo, db):
-    user = UserEntity(full_name="User No Sources", email="nosources@test.com", password_hash="hash")
+    user = UserEntity(full_name="User No Sources", email="nosources@test.com", password_hash="hash", newsletter=False)
     db.session.add(user)
     db.session.commit()
     assert news_source_repo.list_by_user_id(user.id) == []
 
 def test_list_unassociated_by_user_id(news_source_repo, db):
-    user = UserEntity(full_name="Test User 2", email="user2@test.com")
+    user = UserEntity(full_name="Test User 2", email="user2@test.com", newsletter=False)
     user.password_hash = "hash"
     s1 = NewsSourceEntity(name="S1-un", url="http://s1un.com")
     s2 = NewsSourceEntity(name="S2-un", url="http://s2un.com") 
@@ -120,7 +120,7 @@ def test_list_unassociated_by_user_id(news_source_repo, db):
     assert "S3-un" in names
 
 def test_list_unassociated_by_user_id_all_associated(news_source_repo, db):
-    user = UserEntity(full_name="User All Sources", email="allsources@test.com", password_hash="hash")
+    user = UserEntity(full_name="User All Sources", email="allsources@test.com", password_hash="hash", newsletter=False)
     s1 = NewsSourceEntity(name="S1-all", url="http://s1all.com")
     db.session.add_all([user, s1])
     db.session.commit()

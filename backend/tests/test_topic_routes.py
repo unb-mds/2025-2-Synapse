@@ -7,7 +7,8 @@ from app.entities.user_preferred_custom_topics import UserPreferredCustomTopicEn
 valid_user_data = {
     "full_name": "Test User",
     "email": "test.user@example.com",
-    "password": "StrongPassword123"
+    "password": "StrongPassword123",
+    "newsletter": False
 }
 
 def get_auth_client(client, user_data):

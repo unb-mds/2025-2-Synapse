@@ -141,6 +141,7 @@ def test_to_orm(valid_user_data):
             email=user.email,
             birthdate=user.birthdate,
             password_hash=user._password_hash,
+            newsletter=user.newsletter,
         )
 
         # O retorno de to_orm() deve ser a instância criada pelo construtor mockado
