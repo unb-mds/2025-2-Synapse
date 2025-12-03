@@ -1,6 +1,1748 @@
-<!doctype html><html lang=pt-br><head><meta name=generator content="Hugo 0.150.1"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Synapse Documentation</title><link rel=stylesheet href=/2025-2-Synapse/css/synapse.min.css></head><body class=syn-app><nav class=syn-sidebar><a class=syn-brand href=/2025-2-Synapse/>Synapse</a><ul><li><a href=/2025-2-Synapse/architecture_technologies/><svg width="16" height="16" fill="currentColor" style="vertical-align:middle;margin-right:8px" viewBox="0 0 16 16"><path d="M6 2h4v2H6V2zM3 6h10v2H3V6zm2 4h6v2H5v-2zm2 4h2v2H7v-2z"/></svg>
-Architecture/Technologies</a></li><li><a href=/2025-2-Synapse/about_project/><svg width="16" height="16" fill="currentColor" style="vertical-align:middle;margin-right:8px" viewBox="0 0 16 16"><path d="M8 3.293l6 6V13a1 1 0 01-1 1H9v-3H7v3H3a1 1 0 01-1-1V9.293l6-6z"/></svg>
-About Project</a></li><li><a href=/2025-2-Synapse/getting_started/><svg width="16" height="16" fill="currentColor" style="vertical-align:middle;margin-right:8px" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-Getting Started</a></li><li><a href=/2025-2-Synapse/requirements/><svg width="16" height="16" fill="currentColor" style="vertical-align:middle;margin-right:8px" viewBox="0 0 16 16"><path d="M2 4h12v2H2V4zM2 7h9v2H2V7zm0 3h7v2H2v-2z"/></svg>
-Requirements</a></li><li><a href=/2025-2-Synapse/releases_sprints/><svg width="16" height="16" fill="currentColor" style="vertical-align:middle;margin-right:8px" viewBox="0 0 24 24"><path d="M3 12l7-7v4h7v6h-7v4l-7-7z"/><path d="M17 17h4v2h-4v-2zM17 5h4v2h-4V5z"/></svg>
-Releases/Sprints</a></li></ul></nav><main class=main><div class=content><h1 id=synapse>Synapse</h1><p>Bem-vindo à documentação do projeto <strong>Synapse</strong>!</p><hr><h2 id=-descrição>📖 Descrição</h2><p>O <strong>Synapse</strong> é uma plataforma inteligente para <strong>agregação, personalização e recomendação de notícias</strong>, desenvolvida como parte da disciplina de <em>Métodos de Desenvolvimento de Software</em> na <strong>UnB</strong>.</p><p>Seu grande diferencial está na capacidade de <strong>oferecer notícias de forma personalizada para cada usuário</strong>, garantindo que cada pessoa receba conteúdos relevantes de acordo com seus interesses.</p><hr><h2 id=-links-úteis>🔗 Links Úteis</h2><ul><li><a href="https://www.figma.com/design/SxR5ObmFxAvHzOs1Jw0AnY/Prot%C3%B3tipos?node-id=0-1&amp;t=MguUSpJBo5u3gB9V-1">Protótipo</a></li><li><a href="https://www.figma.com/board/qob1Oi0suKGhkMU3ag3sD2/Lean-Inception?node-id=0-1&amp;t=lH5c0CJxaFEqLAbm-1">Lean Inception</a></li><li><a href=https://github.com/unb-mds/2025-2-Synapse>Repositório no GitHub</a></li></ul><hr><h2 id=-autores>👥 Autores</h2><table><thead><tr><th style=text-align:center></th><th style=text-align:center></th><th style=text-align:center></th></tr></thead><tbody><tr><td style=text-align:center><a href=https://github.com/ArthurSismene><img src=https://github.com/Sismene7.png alt="Arthur Sismene" width=96 height=96 style=border-radius:12px></a><br><strong><a href=https://github.com/Sismene7>Arthur Sismene</a></strong><br></td><td style=text-align:center><a href=https://github.com/ArthurDevWorks><img src=https://github.com/ArthurDevWorks.png alt="Arthur Parente" width=96 height=96 style=border-radius:12px></a><br><strong><a href=https://github.com/ArthurDevWorks>Arthur Parente</a></strong><br></td><td style=text-align:center><a href=https://github.com/DiogoAlvesDSilva><img src=https://github.com/Dgprogramas.png alt="Diogo Alves" width=96 height=96 style=border-radius:12px></a><br><strong><a href=https://github.com/Dgprogramas>Diogo Alves</a></strong><br></td></tr><tr><td style=text-align:center><a href=https://github.com/gccintra><img src=https://github.com/gccintra.png alt="Gustavo Cintra" width=96 height=96 style=border-radius:12px></a><br><strong><a href=https://github.com/gccintra>Gustavo Cintra</a></strong><br></td><td style=text-align:center><a href=https://github.com/g-srodrigues><img src=https://github.com/g-srodrigues.png alt="Gustavo Rodrigues" width=96 height=96 style=border-radius:12px></a><br><strong><a href=https://github.com/g-srodrigues>Gustavo Rodrigues</a></strong><br></td><td style=text-align:center><a href=https://github.com/ItaloSamP><img src=https://github.com/ItaloSamP.png alt="Ítalo A. S. de Oliveira" width=96 height=96 style=border-radius:12px></a><br><strong><a href=https://github.com/ItaloSamP>Ítalo Alves</a></strong><br></td></tr></tbody></table><hr></div></main></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapse - Documentação do Projeto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+        .font-montserrat { font-family: 'Montserrat', sans-serif; }
+
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Code blocks */
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            white-space: pre;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-montserrat">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-300 fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <h1 class="text-3xl font-bold text-black font-rajdhani">Synapse</h1>
+                <span class="ml-2 text-sm text-gray-500 font-montserrat">Documentação</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/unb-mds/2025-2-Synapse" target="_blank"
+                   class="text-gray-600 hover:text-black transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="https://synapse-news.up.railway.app/feed" target="_blank"
+                   class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors text-sm font-medium">
+                    Acessar App
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex min-h-screen pt-20">
+
+        <!-- Sidebar -->
+        <aside class="w-80 bg-white border-r border-gray-200 fixed left-0 top-20 bottom-0 overflow-y-auto custom-scrollbar">
+            <nav class="p-6">
+                <div class="space-y-6">
+
+                    <!-- Home -->
+                    <div>
+                        <a href="#home" class="flex items-center text-gray-700 hover:text-black font-medium transition-colors">
+                            <i class="fas fa-home w-5 mr-3"></i>
+                            Página Inicial
+                        </a>
+                    </div>
+
+                    <!-- About -->
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-2">About</h3>
+                        <div class="space-y-2">
+                            <a href="#visao" class="block text-gray-600 hover:text-black transition-colors ml-3">
+                                <i class="fas fa-eye w-4 mr-2"></i>Visão
+                            </a>
+                            <a href="#problema" class="block text-gray-600 hover:text-black transition-colors ml-3">
+                                <i class="fas fa-exclamation-triangle w-4 mr-2"></i>O Problema
+                            </a>
+                            <a href="#solucao" class="block text-gray-600 hover:text-black transition-colors ml-3">
+                                <i class="fas fa-lightbulb w-4 mr-2"></i>A Solução
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Requisitos -->
+                    <div>
+                        <a href="#requisitos" class="flex items-center text-gray-700 hover:text-black font-medium transition-colors">
+                            <i class="fas fa-clipboard-list w-5 mr-3"></i>
+                            Requisitos
+                        </a>
+                    </div>
+
+                    <!-- Arquitetura -->
+                    <div>
+                        <a href="#arquitetura" class="flex items-center text-gray-700 hover:text-black font-medium transition-colors">
+                            <i class="fas fa-sitemap w-5 mr-3"></i>
+                            Arquitetura
+                        </a>
+                    </div>
+
+                    <!-- Deploy -->
+                    <div>
+                        <a href="#deploy" class="flex items-center text-gray-700 hover:text-black font-medium transition-colors">
+                            <i class="fas fa-cloud w-5 mr-3"></i>
+                            Deploy & Infraestrutura
+                        </a>
+                    </div>
+
+                    <!-- Qualidade -->
+                    <div>
+                        <a href="#qualidade" class="flex items-center text-gray-700 hover:text-black font-medium transition-colors">
+                            <i class="fas fa-shield-alt w-5 mr-3"></i>
+                            Qualidade & CI
+                        </a>
+                    </div>
+
+                    <!-- Releases -->
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-2">Releases</h3>
+                        <div class="space-y-2">
+                            <a href="#release1" class="block text-gray-600 hover:text-black transition-colors ml-3">
+                                <i class="fas fa-tag w-4 mr-2"></i>Release 1
+                            </a>
+                            <a href="#release2" class="block text-gray-600 hover:text-black transition-colors ml-3">
+                                <i class="fas fa-tag w-4 mr-2"></i>Release 2
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contribuição -->
+                    <div>
+                        <a href="#contribuir" class="flex items-center text-gray-700 hover:text-black font-medium transition-colors">
+                            <i class="fas fa-code-branch w-5 mr-3"></i>
+                            Como Contribuir
+                        </a>
+                    </div>
+
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 ml-80 p-8 max-w-4xl">
+
+            <!-- Página Inicial -->
+            <section id="home" class="mb-16">
+                <div class="text-center mb-12">
+                    <h1 class="text-6xl font-bold text-black font-rajdhani mb-4">Synapse</h1>
+                    <p class="text-xl text-gray-600 font-montserrat mb-8" id="descricao">
+                        Bem-vindo à documentação do projeto
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">📖 Descrição</h2>
+                    <p class="text-gray-700 mb-4">
+                        O <strong>Synapse</strong> é uma plataforma inteligente para <strong>agregação, personalização e recomendação de notícias</strong>, desenvolvida como parte da disciplina de <em>Métodos de Desenvolvimento de Software</em> na <strong>UnB</strong>.
+                    </p>
+                    <p class="text-gray-700">
+                        Seu grande diferencial está na capacidade de <strong>oferecer notícias de forma personalizada para cada usuário</strong>, garantindo que cada pessoa receba conteúdos relevantes de acordo com seus interesses.
+                    </p>
+                </div>
+
+                <!-- Imagem: Screenshot da aplicação -->
+                <div class="bg-white border border-gray-200 rounded-lg p-8 mb-8">
+                    <img src="./static/print_sistema.png" alt="Screenshot da Aplicação Synapse" class="w-full rounded-lg shadow-sm border border-gray-200">
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">🔗 Links Úteis</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="https://www.figma.com/design/SxR5ObmFxAvHzOs1Jw0AnY/Prot%C3%B3tipos?node-id=0-1&t=MguUSpJBo5u3gB9V-1" target="_blank"
+                           class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fab fa-figma text-purple-500 text-xl mr-3"></i>
+                            <span>Protótipo</span>
+                        </a>
+                        <a href="https://www.figma.com/board/qob1Oi0suKGhkMU3ag3sD2/Lean-Inception?node-id=0-1&t=lH5c0CJxaFEqLAbm-1" target="_blank"
+                           class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-lightbulb text-yellow-500 text-xl mr-3"></i>
+                            <span>Lean Inception</span>
+                        </a>
+                        <a href="https://github.com/unb-mds/2025-2-Synapse" target="_blank"
+                           class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fab fa-github text-gray-800 text-xl mr-3"></i>
+                            <span>Repositório no GitHub</span>
+                        </a>
+                        <a href="https://github.com/orgs/unb-mds/projects/37/views/1" target="_blank"
+                           class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-tasks text-blue-500 text-xl mr-3"></i>
+                            <span>Board/Backlog</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">👥 Autores</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <img src="https://github.com/Sismene7.png" alt="Arthur Sismene" class="w-24 h-24 rounded-full mx-auto mb-3">
+                            <p class="font-medium"><b>Arthur Sismene</b></p>
+                            <a href="https://github.com/Sismene7" target="_blank" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://github.com/ArthurDevWorks.png" alt="Arthur Parente" class="w-24 h-24 rounded-full mx-auto mb-3">
+                            <p class="font-medium"><b>Arthur Parente</b></p>
+                            <a href="https://github.com/ArthurDevWorks" target="_blank" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://github.com/Dgprogramas.png" alt="Diogo Alves" class="w-24 h-24 rounded-full mx-auto mb-3">
+                            <p class="font-medium"><b>Diogo Alves</b></p>
+                            <a href="https://github.com/Dgprogramas" target="_blank" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://github.com/gccintra.png" alt="Gustavo Cintra" class="w-24 h-24 rounded-full mx-auto mb-3">
+                            <p class="font-medium"><b>Gustavo Cintra</b></p>
+                            <a href="https://github.com/gccintra" target="_blank" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://github.com/g-srodrigues.png" alt="Gustavo Rodrigues" class="w-24 h-24 rounded-full mx-auto mb-3">
+                            <p class="font-medium"><b>Gustavo Rodrigues</b></p>
+                            <a href="https://github.com/g-srodrigues" target="_blank" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://github.com/ItaloSamP.png" alt="Ítalo Alves" class="w-24 h-24 rounded-full mx-auto mb-3">
+                            <p class="font-medium"><b>Ítalo Alves</b></p>
+                            <a href="https://github.com/ItaloSamP" target="_blank" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About -->
+            <section id="about" class="mb-16">
+                <h1 class="text-4xl font-bold font-rajdhani mb-8 text-black">Sobre o Projeto</h1>
+
+                <div id="visao" class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4 text-green-600">Visão</h2>
+                    <p class="text-gray-700 text-lg">
+                        Transformar a sobrecarga de informação em conhecimento focado, permitindo que qualquer pessoa se atualize sobre seus interesses em <strong>menos de 5 minutos diários</strong>.
+                    </p>
+                </div>
+
+                <div id="problema" class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4 text-red-600">O Problema</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Sobrecarga de Informação</h3>
+                                <p class="text-gray-600">Um volume impossível de conteúdo diário gera ansiedade e perda de tempo.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-filter text-orange-500 mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Filtro Ineficiente</h3>
+                                <p class="text-gray-600">Agregadores atuais e redes sociais priorizam engajamento e cliques, não a relevância para o indivíduo.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-purple-500 mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Perda de Produtividade</h3>
+                                <p class="text-gray-600">Profissionais gastam um tempo valioso tentando separar o "sinal" do "ruído" para se manterem competitivos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="solucao" class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4 text-blue-600">A Solução: Uma Plataforma Rápida e Inteligente</h2>
+                    <p class="text-gray-700 mb-6">
+                        O <strong>Synapse</strong> é um ecossistema de notícias que inverte a lógica do mercado, focando em eficiência e valor.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <i class="fas fa-user-cog text-blue-600 text-xl mb-2"></i>
+                            <h3 class="font-semibold text-gray-800 mb-2">Personalização Total</h3>
+                            <p class="text-gray-600 text-sm">O usuário define seus interesses e fontes. O feed aprende com o uso, incluindo um feedback de “não tenho interesse” para refinar as recomendações.</p>
+                        </div>
+                        <div class="p-4 bg-purple-50 rounded-lg">
+                            <i class="fas fa-robot text-purple-600 text-xl mb-2"></i>
+                            <h3 class="font-semibold text-gray-800 mb-2">Resumos com IA</h3>
+                            <p class="text-gray-600 text-sm">O recurso central da plataforma. A IA gera sínteses objetivas das notícias mais importantes, permitindo uma compreensão rápida do cenário.</p>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-green-600 text-xl mb-2"></i>
+                            <h3 class="font-semibold text-gray-800 mb-2">Experiência Focada</h3>
+                            <p class="text-gray-600 text-sm">Interface minimalista, sem distrações e com tempos de carregamento extremamente rápidos (&lt; 3s) para garantir uma leitura fluida.</p>
+                        </div>
+                        <div class="p-4 bg-orange-50 rounded-lg">
+                            <i class="fas fa-envelope text-orange-600 text-xl mb-2"></i>
+                            <h3 class="font-semibold text-gray-800 mb-2">Newsletter Inteligente</h3>
+                            <p class="text-gray-600 text-sm">Entrega os resumos de IA personalizados diretamente no e-mail do usuário, mantendo-o informado de forma passiva e eficiente.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">💎 Proposta de Valor e Diferenciais</h2>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <p class="text-gray-700"><strong>Foco em Velocidade vs. Retenção:</strong> Nosso objetivo é tirar o usuário da plataforma o mais rápido possível, mas bem-informado. O mercado quer mantê-lo rolando o feed.</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <p class="text-gray-700"><strong>Qualidade vs. Quantidade:</strong> Entregamos uma curadoria de alta relevância em vez de um mar de informações.</p>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <p class="text-gray-700"><strong>Eficiência como Recurso Principal:</strong> Usamos IA para economizar o tempo do usuário, não apenas para recomendar o próximo conteúdo.</p>
+                        </div>
+                        <div class="border-l-4 border-orange-500 pl-4">
+                            <p class="text-gray-700"><strong>Sinal vs. Ruído:</strong> Somos a ferramenta definitiva para filtrar o que realmente importa.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">🏛️ Pilares Técnicos</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <h3 class="font-semibold text-gray-800 mb-2">🚀 Performance</h3>
+                            <p class="text-gray-600 text-sm">Arquitetura otimizada para respostas de API abaixo de 500ms.</p>
+                        </div>
+                        <div class="p-4 bg-red-50 rounded-lg">
+                            <h3 class="font-semibold text-gray-800 mb-2">🔒 Segurança</h3>
+                            <p class="text-gray-600 text-sm">Dados protegidos com padrões modernos (JWT, bcrypt, HTTPS).</p>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg">
+                            <h3 class="font-semibold text-gray-800 mb-2">🎯 Usabilidade</h3>
+                            <p class="text-gray-600 text-sm">Design totalmente responsivo para uma experiência consistente em desktop, tablet e mobile.</p>
+                        </div>
+                        <div class="p-4 bg-purple-50 rounded-lg">
+                            <h3 class="font-semibold text-gray-800 mb-2">📈 Escalabilidade</h3>
+                            <p class="text-gray-600 text-sm">Sistema containerizado com Docker e arquitetura desacoplada para facilitar a manutenção e o crescimento futuro.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Requisitos -->
+            <section id="requisitos" class="mb-16">
+                <h1 class="text-4xl font-bold font-rajdhani mb-8 text-black">📋 Levantamento de Requisitos</h1>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">1. Introdução</h2>
+                    <p class="text-gray-700">
+                        Este documento consolida os <strong>Requisitos Funcionais (RFs)</strong> e os <strong>Requisitos Não Funcionais (RNFs)</strong>
+                        do sistema Synapse. Ele serve como referência para a equipe de desenvolvimento, garantindo clareza sobre
+                        <em>o que o sistema deve fazer</em> e <em>como deve se comportar</em>.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">2. Requisitos Funcionais</h2>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-blue-600 mb-3">Épico 001: Autenticação e Cadastro</h3>
+                                <p class="text-gray-600 text-sm mb-3"><em>Permitir que os usuários criem e acessem suas contas de forma segura.</em></p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="p-3 bg-blue-50 rounded border">HU001.1 - Cadastro com E-mail e Senha</div>
+                                    <div class="p-3 bg-blue-50 rounded border">HU001.2 - Autenticação com E-mail e Senha</div>
+                                <div class="p-3 bg-blue-50 rounded border">HU001.4 - Autenticação com Google</div>
+                                <div class="p-3 bg-blue-50 rounded border">HU001.5 - Login sem senha (Magic Login)</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-600 mb-3">Épico 002: Consumo de Notícias</h3>
+                                <p class="text-gray-600 text-sm mb-3"><em>Garantir a melhor experiência para o usuário ao visualizar e interagir com conteúdos noticiosos.</em></p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="p-3 bg-green-50 rounded border">TT002.1 - Coleta Automatizada de Notícias</div>
+                                <div class="p-3 bg-green-50 rounded border">HU002.1 - Feed Principal de Notícias</div>
+                                <div class="p-3 bg-green-50 rounded border">HU002.10 - Ler conteúdo completo</div>
+                                <div class="p-3 bg-green-50 rounded border">HU002.8 - Favoritar/Salvar Notícia</div>
+                                    <div class="p-3 bg-green-50 rounded border">HU002.3 - Filtros Avançados no Feed</div>
+                                <div class="p-3 bg-green-50 rounded border">HU002.2 - Aba "Recomendados"</div>
+                                    <div class="p-3 bg-green-50 rounded border">TT002.2 - Salvar comportamento do usuário</div>
+                                    <div class="p-3 bg-green-50 rounded border">HU002.9 - Interação "Não Tenho Interesse"</div>
+                                <div class="p-3 bg-green-50 rounded border">HU002.5 - Resumo do Dia com IA</div>
+                                    <div class="p-3 bg-green-50 rounded border">HU002.6 - Visualizar Notícias Agrupadas por Fonte</div>
+                                    <div class="p-3 bg-green-50 rounded border">HU002.4 - Seção de Notícias "Quentes"</div>
+                                    <div class="p-3 bg-green-50 rounded border">HU002.7 - Notícias por Localização</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-purple-600 mb-3">Épico 003: Perfil e Preferências</h3>
+                                <p class="text-gray-600 text-sm mb-3"><em>Permitir que o usuário visualize e personalize suas informações e preferências.</em></p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="p-3 bg-purple-50 rounded border">HU003.1 - Página de Perfil</div>
+                                    <div class="p-3 bg-purple-50 rounded border">HU003.5 - Seleção Inicial de Interesses</div>
+                                <div class="p-3 bg-purple-50 rounded border">HU003.6 - Editar Informações da Conta</div>
+                                    <div class="p-3 bg-purple-50 rounded border">HU003.7 - Alterar Senha</div>
+                                <div class="p-3 bg-purple-50 rounded border">HU003.8 - Gerenciar Tópicos Preferidos</div>
+                                <div class="p-3 bg-purple-50 rounded border">HU003.9 - Gerenciar Fontes Preferidas</div>
+                                    <div class="p-3 bg-purple-50 rounded border">HU003.4 - Logout de Usuário</div>
+                                <div class="p-3 bg-purple-50 rounded border">HU003.2 - Notícias Favoritas</div>
+                                <div class="p-3 bg-purple-50 rounded border">HU003.3 - Histórico de Leitura</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-orange-600 mb-3">Épico 004: Newsletter</h3>
+                                <p class="text-gray-600 text-sm mb-3"><em>Automatizar o envio de newsletters personalizadas com base nos interesses do usuário.</em></p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="p-3 bg-orange-50 rounded border">HU004.1 - Newsletter Diária</div>
+                                <div class="p-3 bg-orange-50 rounded border">HU004.5 - Habilitar/Desabilitar Newsletter</div>
+                                <div class="p-3 bg-orange-50 rounded border">HU004.2 - Seleção de Interesses</div>
+                                    <div class="p-3 bg-orange-50 rounded border">HU004.3 - Sistema de Feedback sobre Notícias</div>
+                                <div class="p-3 bg-orange-50 rounded border">HU004.4 - Personalização do Prompt IA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">3. Requisitos Não Funcionais</h2>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-red-600 mb-3">⚡ Desempenho</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse border border-gray-200 text-sm">
+                                    <thead>
+                                        <tr class="bg-gray-50">
+                                            <th class="border border-gray-200 px-4 py-2 text-left">ID</th>
+                                            <th class="border border-gray-200 px-4 py-2 text-left">Requisito</th>
+                                            <th class="border border-gray-200 px-4 py-2 text-left">Métrica</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border border-gray-200 px-4 py-2">RNF-01</td>
+                                            <td class="border border-gray-200 px-4 py-2">Tempo de Resposta da API</td>
+                                            <td class="border border-gray-200 px-4 py-2">95% das requisições GET < 500ms</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-gray-200 px-4 py-2">RNF-02</td>
+                                            <td class="border border-gray-200 px-4 py-2">Carregamento da Página Principal</td>
+                                            <td class="border border-gray-200 px-4 py-2">< 3s em conexão banda larga</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-gray-200 px-4 py-2">RNF-03</td>
+                                            <td class="border border-gray-200 px-4 py-2">Execução do Job de Coleta</td>
+                                            <td class="border border-gray-200 px-4 py-2">Concluir em < 1 hora</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-gray-200 px-4 py-2">RNF-04</td>
+                                            <td class="border border-gray-200 px-4 py-2">Chamadas à IA</td>
+                                            <td class="border border-gray-200 px-4 py-2">Resumo em até 10s</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-600 mb-3">🔐 Segurança</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 border border-gray-200 rounded">
+                                    <h4 class="font-semibold mb-2">RNF-05: Armazenamento de Senhas</h4>
+                                    <p class="text-sm text-gray-600">Hash + sal (bcrypt)</p>
+                                </div>
+                                <div class="p-4 border border-gray-200 rounded">
+                                    <h4 class="font-semibold mb-2">RNF-06: Autenticação de API</h4>
+                                    <p class="text-sm text-gray-600">JWT obrigatório</p>
+                                </div>
+                                <div class="p-4 border border-gray-200 rounded">
+                                    <h4 class="font-semibold mb-2">RNF-07: Comunicação Segura</h4>
+                                    <p class="text-sm text-gray-600">Exclusivamente HTTPS</p>
+                                </div>
+                                <div class="p-4 border border-gray-200 rounded">
+                                    <h4 class="font-semibold mb-2">RNF-08: Proteção de Chaves</h4>
+                                    <p class="text-sm text-gray-600">Somente via variáveis de ambiente</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-blue-600 mb-3">📱 Usabilidade</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-center p-3 border border-gray-200 rounded">
+                                    <i class="fas fa-mobile-alt text-blue-500 mr-3"></i>
+                                    <span><strong>RNF-09:</strong> Responsividade - Suporte a Desktop, Tablet e Smartphone</span>
+                                </li>
+                                <li class="flex items-center p-3 border border-gray-200 rounded">
+                                    <i class="fas fa-globe text-blue-500 mr-3"></i>
+                                    <span><strong>RNF-10:</strong> Compatibilidade - Últimas 2 versões de Chrome, Firefox, Safari</span>
+                                </li>
+                                <li class="flex items-center p-3 border border-gray-200 rounded">
+                                    <i class="fas fa-spinner text-blue-500 mr-3"></i>
+                                    <span><strong>RNF-11:</strong> Feedback Visual - Indicadores de carregamento</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-purple-600 mb-3">🛠️ Manutenibilidade e Escalabilidade</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse border border-gray-200 text-sm">
+                                    <thead>
+                                        <tr class="bg-gray-50">
+                                            <th class="border border-gray-200 px-4 py-2 text-left">ID</th>
+                                            <th class="border border-gray-200 px-4 py-2 text-left">Requisito</th>
+                                            <th class="border border-gray-200 px-4 py-2 text-left">Métrica</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td class="border border-gray-200 px-4 py-2">RNF-12</td><td class="border border-gray-200 px-4 py-2">Containerização</td><td class="border border-gray-200 px-4 py-2">Docker + Docker Compose</td></tr>
+                                        <tr><td class="border border-gray-200 px-4 py-2">RNF-13</td><td class="border border-gray-200 px-4 py-2">Padrões de Código</td><td class="border border-gray-200 px-4 py-2">Python PEP8, JS/React com Prettier</td></tr>
+                                        <tr><td class="border border-gray-200 px-4 py-2">RNF-14</td><td class="border border-gray-200 px-4 py-2">Separação de Camadas</td><td class="border border-gray-200 px-4 py-2">Controller, Service, Repository</td></tr>
+                                        <tr><td class="border border-gray-200 px-4 py-2">RNF-15</td><td class="border border-gray-200 px-4 py-2">Logging</td><td class="border border-gray-200 px-4 py-2">Log de coletas e erros críticos da API</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Arquitetura -->
+            <section id="arquitetura" class="mb-16">
+                <h1 class="text-4xl font-bold font-rajdhani mb-8 text-black">🏗️ Arquitetura do Sistema Synapse</h1>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">📋 Visão Geral</h2>
+                    <p class="text-gray-700 mb-4">
+                        O <strong>Synapse</strong> é uma plataforma de notícias centralizadora e personalizada, projetada para otimizar o tempo de usuários que precisam acompanhar informações de forma frequente e eficiente, como investidores, estudantes e jornalistas.
+                        Utiliza uma <strong>arquitetura de aplicação web distribuída</strong> com separação clara entre frontend (Single Page Application em React) e backend (API RESTful em Flask), com um banco de dados PostgreSQL e tudo containerizado com Docker.
+                    </p>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <h3 class="font-semibold text-blue-800 mb-2">🎯 Objetivo Principal</h3>
+                        <p class="text-blue-700">
+                            Entregar um fluxo de <strong>notícias e artigos altamente relevantes</strong>, filtrados de acordo com as preferências e comportamento de cada usuário, funcionando como uma newsletter inteligente que agrega conteúdo de diversas fontes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Imagem: Diagrama C4 - Visão 1 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-8 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Visão 1</h3>
+                    <img src="./static/c4_1.png" alt="Diagrama C4 - Visão 1" class="w-full rounded-lg shadow-sm">
+                </div>
+
+                <!-- Imagem: Diagrama C4 - Visão 2 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-8 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Visão 2</h3>
+                    <img src="./static/c4_2.png" alt="Diagrama C4 - Visão 2" class="w-full rounded-lg shadow-sm">
+                </div>
+
+                <!-- Imagem: Diagrama C4 - Visão 3 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-8 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Visão 3</h3>
+                    <img src="./static/c4_3.png" alt="Diagrama C4 - Visão 3" class="w-full rounded-lg shadow-sm">
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">🛠️ Stack de Tecnologias</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-lg font-semibold text-blue-600 mb-4">🔧 Backend</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                                    <span class="font-semibold">Python 3.11+</span>
+                                    <span class="text-sm text-blue-600">Ecossistema robusto para IA/ML e web</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                                    <span class="font-semibold">Flask 2.3+</span>
+                                    <span class="text-sm text-blue-600">Framework leve e flexível para APIs</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                                    <span class="font-semibold">SQLAlchemy 2.0+</span>
+                                    <span class="text-sm text-blue-600">ORM poderoso</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                                    <span class="font-semibold">PostgreSQL 14+</span>
+                                    <span class="text-sm text-blue-600">Banco relacional confiável e avançado</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-600 mb-4">🎨 Frontend</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center p-3 bg-green-50 rounded">
+                                    <span class="font-semibold">React.js 18+</span>
+                                    <span class="text-sm text-green-600">Biblioteca madura para UI</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-green-50 rounded">
+                                    <span class="font-semibold">Vite 4+</span>
+                                    <span class="text-sm text-green-600">Build tool rápido</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-green-50 rounded">
+                                    <span class="font-semibold">TailwindCSS 3+</span>
+                                    <span class="text-sm text-green-600">Framework CSS utilitário</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-lg font-semibold text-purple-600 mb-4">☁️ Serviços Externos</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-4 border border-gray-200 rounded-lg text-center">
+                                <i class="fas fa-newspaper text-purple-500 text-2xl mb-2"></i>
+                                <h4 class="font-semibold">GNews API</h4>
+                                <p class="text-sm text-gray-600">Acesso a fontes globais estruturadas</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg text-center">
+                                <i class="fas fa-brain text-purple-500 text-2xl mb-2"></i>
+                                <h4 class="font-semibold">Google Gemini</h4>
+                                <p class="text-sm text-gray-600">LLM avançado para sumarização</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded-lg text-center">
+                                <i class="fas fa-spider text-purple-500 text-2xl mb-2"></i>
+                                <h4 class="font-semibold">Newspaper4k</h4>
+                                <p class="text-sm text-gray-600">Extração limpa do texto dos artigos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">🏗️ Arquitetura do Backend</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-4">📁 Estrutura em Camadas (MVC/Service)</h3>
+                        <div class="code-block">
+backend/app/
+├── routes/          # Definição de endpoints HTTP
+├── controllers/     # Orquestração entre rotas e serviços
+├── services/        # Lógica de negócio principal
+├── repositories/    # Acesso e manipulação de dados
+├── models/          # Modelos ORM (SQLAlchemy)
+├── entities/        # DTOs para transporte de dados
+└── utils/           # Utilitários e validações
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-4">🔄 Fluxo de Dados</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-center text-gray-700">
+                                <strong>Requisição HTTP</strong> → <strong>Route</strong> → <strong>Controller</strong> →
+                                <strong>Service</strong> → <strong>Repository</strong> → <strong>Model</strong> → <strong>Database</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">📋 Responsabilidades das Camadas</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 border border-gray-200 rounded">
+                                <h4 class="font-semibold text-blue-600">Routes</h4>
+                                <p class="text-sm text-gray-600">Mapeamento de URLs para controllers</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded">
+                                <h4 class="font-semibold text-green-600">Controllers</h4>
+                                <p class="text-sm text-gray-600">Validação de entrada e orquestração</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded">
+                                <h4 class="font-semibold text-purple-600">Services</h4>
+                                <p class="text-sm text-gray-600">Regras de negócio e lógica aplicacional</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded">
+                                <h4 class="font-semibold text-orange-600">Repositories</h4>
+                                <p class="text-sm text-gray-600">Abstração de acesso aos dados</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded">
+                                <h4 class="font-semibold text-red-600">Models</h4>
+                                <p class="text-sm text-gray-600">Modelos de negócio e representação das tabelas</p>
+                            </div>
+                            <div class="p-4 border border-gray-200 rounded">
+                                <h4 class="font-semibold text-teal-600">Entities</h4>
+                                <p class="text-sm text-gray-600">Objetos de transferência de dados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">🎨 Arquitetura do Frontend</h2>
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-4">📱 Estrutura de Componentes</h3>
+                        <p class="text-gray-700 mb-4">Organização do código fonte baseada em Atomic Design e responsabilidades:</p>
+                        <div class="code-block">
+frontend/src/
+├── pages/          # Páginas principais da aplicação
+├── components/     # Componentes reutilizáveis (átomos, moléculas)
+├── layouts/        # Layouts base (header, footer, sidebar)
+├── hooks/          # Custom React hooks para lógica de estado
+├── services/       # Integração com a API backend
+└── utils/          # Funções auxiliares e helpers
+                        </div>
+                    </div>
+                    <p class="text-gray-700">Padrões utilizados incluem o uso exclusivo de <strong>Componentes Funcionais</strong> com React Hooks, <strong>Custom Hooks</strong> para encapsulamento de lógica, e <strong>Route Protection</strong> para rotas privadas.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">🗄️ Modelo de Dados</h2>
+                    <div class="text-center">
+                        <img src="./static/modelo_dados.png" alt="Modelo de Dados" class="mx-auto border border-gray-200 rounded-lg shadow-sm">
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">🔄 Pipeline de Processamento de Notícias</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-4">📊 Fluxo de Coleta</h3>
+                        <div class="bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-lg">
+                            <div class="flex items-center justify-between text-center">
+                                <div class="flex-1">
+                                    <i class="fas fa-clock text-blue-500 text-2xl mb-2"></i>
+                                    <p class="font-semibold">Cron Job</p>
+                                </div>
+                                <div class="text-gray-400 mx-2">→</div>
+                                <div class="flex-1">
+                                    <i class="fas fa-newspaper text-green-500 text-2xl mb-2"></i>
+                                    <p class="font-semibold">GNews API</p>
+                                </div>
+                                <div class="text-gray-400 mx-2">→</div>
+                                <div class="flex-1">
+                                    <i class="fas fa-spider text-purple-500 text-2xl mb-2"></i>
+                                    <p class="font-semibold">Newspaper4k</p>
+                                </div>
+                                <div class="text-gray-400 mx-2">→</div>
+                                <div class="flex-1">
+                                    <i class="fas fa-brain text-orange-500 text-2xl mb-2"></i>
+                                    <p class="font-semibold">Google Gemini</p>
+                                </div>
+                                <div class="text-gray-400 mx-2">→</div>
+                                <div class="flex-1">
+                                    <i class="fas fa-database text-red-500 text-2xl mb-2"></i>
+                                    <p class="font-semibold">PostgreSQL</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">🔧 Detalhamento do Processo</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-3 mt-1">1</span>
+                                    <div>
+                                        <h4 class="font-semibold">Job Agendado</h4>
+                                        <p class="text-sm text-gray-600">Cron job executado periodicamente</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs mr-3 mt-1">2</span>
+                                    <div>
+                                        <h4 class="font-semibold">GNews API</h4>
+                                        <p class="text-sm text-gray-600">Coleta links de notícias por tópico</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mr-3 mt-1">3</span>
+                                    <div>
+                                        <h4 class="font-semibold">Newspaper4k</h4>
+                                        <p class="text-sm text-gray-600">Extrai conteúdo limpo dos artigos</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs mr-3 mt-1">4</span>
+                                    <div>
+                                        <h4 class="font-semibold">Google Gemini</h4>
+                                        <p class="text-sm text-gray-600">Gera resumos inteligentes</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs mr-3 mt-1">5</span>
+                                    <div>
+                                        <h4 class="font-semibold">PostgreSQL</h4>
+                                        <p class="text-sm text-gray-600">Persiste dados processados</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">⚡ Personalização</h3>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-blue-50 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800">Filtragem por Tópicos</h4>
+                                    <p class="text-sm text-blue-600">Usuários escolhem áreas de interesse</p>
+                                </div>
+                                <div class="p-4 bg-green-50 rounded-lg">
+                                    <h4 class="font-semibold text-green-800">Seleção de Fontes</h4>
+                                    <p class="text-sm text-green-600">Preferência por veículos específicos</p>
+                                </div>
+                                <div class="p-4 bg-purple-50 rounded-lg">
+                                    <h4 class="font-semibold text-purple-800">Histórico de Leitura</h4>
+                                    <p class="text-sm text-purple-600">Melhoria contínua das recomendações</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deploy -->
+            <section id="deploy" class="mb-16">
+                <h1 class="text-4xl font-bold font-rajdhani mb-8 text-black">🚀 Deploy e Infraestrutura</h1>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <p class="text-gray-700 mb-4">
+                        O deploy do sistema Synapse foi realizado com sucesso utilizando a plataforma <strong>Railway</strong>,
+                        escolhida pela sua robustez, facilidade de integração contínua (CI/CD) e suporte nativo a aplicações containerizadas.
+                    </p>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <p class="text-blue-800">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            <strong>Acesse a aplicação em:</strong>
+                            <a href="https://synapse-news.up.railway.app/feed" target="_blank"
+                               class="text-blue-600 hover:text-blue-800 font-semibold ml-2">
+                                https://synapse-news.up.railway.app/feed
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">☁️ Detalhes da Infraestrutura no Railway</h2>
+
+                    <p class="text-gray-700 mb-6">
+                        A arquitetura definida no projeto foi migrada para serviços individuais dentro do Railway,
+                        garantindo escalabilidade e gerenciamento isolado de recursos.
+                    </p>
+
+                    <div class="my-6 text-center">
+                        <img src="./static/railway_print.png" alt="Infraestrutura Railway" class="mx-auto border border-gray-200 rounded-lg shadow-sm">
+                    </div>
+
+                    <h3 class="text-lg font-semibold mb-4">🏗️ Organização dos Serviços</h3>
+                    <div class="space-y-6">
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-database text-blue-500 text-xl mr-3"></i>
+                                <h4 class="text-lg font-semibold">Database (PostgreSQL)</h4>
+                            </div>
+                            <p class="text-gray-700 mb-2">
+                                Foi provisionado um serviço gerenciado de PostgreSQL diretamente pelo Railway.
+                            </p>
+                            <div class="bg-green-50 border border-green-200 rounded p-3">
+                                <p class="text-green-800 text-sm">
+                                    <strong>Vantagem:</strong> Oferece backup automático, alta disponibilidade e conexão segura
+                                    interna, sem exposição pública para a internet.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-cog text-green-500 text-xl mr-3"></i>
+                                <h4 class="text-lg font-semibold">Backend (API Synapse)</h4>
+                            </div>
+                            <p class="text-gray-700">
+                                O deploy é realizado a partir do diretório <code class="bg-gray-100 px-2 py-1 rounded">./backend</code>.
+                                utilizando o arquivo de containerização específico. Este serviço atua como o núcleo da aplicação.
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-desktop text-purple-500 text-xl mr-3"></i>
+                                <h4 class="text-lg font-semibold">Frontend (Interface Web)</h4>
+                            </div>
+                            <p class="text-gray-700">
+                                O deploy é feito a partir do diretório <code class="bg-gray-100 px-2 py-1 rounded">./frontend</code>.
+                                A interface é construída de forma otimizada para produção.
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-clock text-orange-500 text-xl mr-3"></i>
+                                <h4 class="text-lg font-semibold">Cron Job (Coletor de Notícias)</h4>
+                            </div>
+                            <p class="text-gray-700">
+                                Foi criado um serviço dedicado do tipo "Worker" que utiliza a configuração específica para
+                                tarefas agendadas, rodando em segundo plano sem afetar a performance da API principal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">🔄 Integração Contínua</h2>
+
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-sync-alt text-green-500 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="font-semibold text-green-800 mb-2">Continuous Deployment</h3>
+                                <p class="text-green-700">
+                                    O deploy está configurado para ser acionado automaticamente. Sempre que uma nova funcionalidade
+                                    é aprovada e inserida na branch principal do repositório, o Railway detecta a mudança, constrói
+                                    os novos containers e atualiza a aplicação em produção <strong>sem interrupções</strong> para os usuários.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Qualidade e CI -->
+            <section id="qualidade" class="mb-16">
+                <h1 class="text-4xl font-bold font-rajdhani mb-8 text-black">🛡️ Qualidade e Integração Contínua (CI)</h1>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <p class="text-gray-700">
+                        Para garantir a estabilidade e a confiabilidade do código, o Synapse utiliza esteiras de automação
+                        (pipelines) configuradas no <strong>GitHub Actions</strong>. Cada contribuição submetida ao repositório
+                        passa por verificações rigorosas antes de ser integrada às branches principais.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">⚙️ A Esteira de CI</h2>
+
+                    <p class="text-gray-700 mb-6">
+                        A arquitetura de CI foi separada em dois fluxos de trabalho distintos para otimizar o tempo de execução
+                        e garantir que apenas os componentes alterados sejam testados (`backend-ci.yml` e `frontend-ci.yml`).
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fab fa-python text-blue-500 text-xl mr-3"></i>
+                                <h3 class="text-lg font-semibold">Backend Pipeline</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">
+                                Este fluxo é acionado sempre que há alterações no diretório <code>backend/</code>.
+                            </p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center">
+                                    <i class="fas fa-server text-gray-400 mr-2"></i>
+                                    <span><strong>Ambiente:</strong> Ubuntu Latest com Python 3.11</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-box text-gray-400 mr-2"></i>
+                                    <span><strong>Dependências:</strong> Instalação via pip com cache</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-vial text-gray-400 mr-2"></i>
+                                    <span><strong>Testes:</strong> Suíte completa com `pytest`</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fab fa-react text-green-500 text-xl mr-3"></i>
+                                <h3 class="text-lg font-semibold">Frontend Pipeline</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">
+                                Focado na integridade da interface, acionado quando arquivos em <code>frontend/</code> são modificados.
+                            </p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center">
+                                    <i class="fas fa-server text-gray-400 mr-2"></i>
+                                    <span><strong>Ambiente:</strong> Ubuntu Latest com Node.js 20.x</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-hammer text-gray-400 mr-2"></i>
+                                    <span><strong>Build Check:</strong> Executa npm run build</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-gray-400 mr-2"></i>
+                                    <span><strong>Validação:</strong> Garante que o código compila sem erros</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">📊 Cobertura de Testes (Code Coverage)</h2>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-shield-alt text-green-500 text-2xl mr-4"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-green-800">Regra de 90%</h3>
+                                <p class="text-green-700">
+                                    O pipeline está configurado para falhar automaticamente se a cobertura de testes
+                                    for inferior a <strong>90%</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-green-800 mb-2">Comando de Verificação:</h4>
+                            <div class="code-block">
+pytest --cov=. --cov-fail-under=90
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <img src="./static/print_90_teste.png" alt="Coverage Report 90%+" class="mx-auto border border-gray-200 rounded-lg shadow-sm max-w-2xl">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-4 border border-gray-200 rounded-lg">
+                            <i class="fas fa-tools text-blue-500 text-xl mb-2"></i>
+                            <h4 class="font-semibold mb-2">Ferramenta Utilizada</h4>
+                            <p class="text-sm text-gray-600">
+                                Utilizamos o <code class="bg-gray-100 px-2 py-1 rounded">pytest-cov</code> para gerar
+                                relatórios detalhados durante a execução da CI.
+                            </p>
+                        </div>
+
+                        <div class="p-4 border border-gray-200 rounded-lg">
+                            <i class="fas fa-bullseye text-green-500 text-xl mb-2"></i>
+                            <h4 class="font-semibold mb-2">Benefícios</h4>
+                            <p class="text-sm text-gray-600">
+                                Garante que novas funcionalidades não sejam inseridas sem os devidos testes e que
+                                a dívida técnica relacionada a testes não aumente ao longo do projeto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-6">🚀 Otimização de Recursos</h2>
+
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-lightbulb text-blue-500 text-xl mr-3"></i>
+                            <h3 class="text-lg font-semibold text-blue-800">Verificação Inteligente</h3>
+                        </div>
+
+                        <p class="text-blue-700 mb-4">
+                            Para economizar recursos computacionais e tempo de espera dos desenvolvedores, as esteiras
+                            implementam uma verificação inteligente de mudanças de arquivos.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div class="p-3 bg-white border border-blue-200 rounded">
+                                <h4 class="font-semibold text-blue-800 text-sm mb-1">Cenário 1</h4>
+                                <p class="text-blue-600 text-sm">
+                                    Se um PR altera apenas documentação ou frontend, a esteira do backend
+                                    <strong>não é executada</strong>.
+                                </p>
+                            </div>
+                            <div class="p-3 bg-white border border-blue-200 rounded">
+                                <h4 class="font-semibold text-blue-800 text-sm mb-1">Cenário 2</h4>
+                                <p class="text-blue-600 text-sm">
+                                    Se um PR altera apenas backend, a esteira do frontend
+                                    <strong>não é executada</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espaço para imagem: Fluxo de CI/CD -->
+                <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-12 text-center mt-8">
+                    <i class="fas fa-code-branch text-4xl text-gray-400 mb-4"></i>
+                    <p class="text-gray-500">Espaço para Diagrama do Fluxo de CI/CD</p>
+                </div>
+            </section>
+
+            <!-- Releases -->
+            <section id="releases" class="mb-16">
+                <h1 class="text-4xl font-bold font-rajdhani mb-8 text-black">🚀 Releases do Projeto Synapse</h1>
+
+                <p class="text-gray-700 mb-8">
+                    Bem-vindo ao histórico de evolução do Synapse. Abaixo detalhamos as entregas, o escopo de cada sprint e os changelogs de cada versão principal.
+                </p>
+
+                <!-- Release 1 -->
+                <div id="release1" class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <div class="flex items-center mb-2">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-4">v0.1.0-alpha</span>
+                        <h2 class="text-2xl font-bold font-rajdhani">Release 1: Validação, Base Técnica e Core Funcional</h2>
+                    </div>
+
+                    <div class="mb-6">
+                        <span class="text-sm text-gray-500">📅 Lançamento: 01/10/2025</span>
+                    </div>
+
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <h3 class="font-semibold text-blue-800 mb-2">🎯 Objetivo da Release</h3>
+                        <p class="text-blue-700">
+                            O foco principal da Release 1 foi estratégico: <strong>validar a viabilidade</strong> da ideia do Synapse e <strong>retirar as principais incertezas</strong> técnicas e de produto. O trabalho se concentrou em construir a base da aplicação em três frentes essenciais:
+                        </p>
+                        <ol class="list-decimal list-inside text-blue-700 mt-2 space-y-1 text-sm">
+                            <li>Uma <strong>arquitetura robusta</strong> e escalável com Docker, Flask e React.</li>
+                            <li>O <strong>ciclo de vida completo do usuário</strong>, incluindo autenticação e gerenciamento de perfil.</li>
+                            <li>A entrega do protótipo funcional do <strong>motor de coleta de notícias</strong>, o job automatizado que é o coração do produto.</li>
+                        </ol>
+                        <h4 class="font-semibold text-blue-800 mt-4 mb-2">Foco Estratégico</h4>
+                        <ul class="list-disc list-inside text-blue-700 text-sm space-y-1">
+                            <li><strong>Validar a Ideia:</strong> Provar a viabilidade técnica do agregador inteligente.</li>
+                            <li><strong>Retirar Incertezas:</strong> Solidificar arquitetura (Flask, React, Docker).</li>
+                            <li><strong>Provar a Viabilidade:</strong> Integração eficiente de Banco de Dados, API, Frontend e Job Agendado.</li>
+                            <li><strong>Construir a Base:</strong> Alicerce de código para escalabilidade futura.</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mb-4">🏃‍♂️ Sprints da Release 1</h3>
+
+                    <div class="space-y-4">
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">
+                                Sprint 0: Base Técnica e Alinhamento (24/08/2025 – 06/09/2025)
+                            </summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Reduzir incertezas e alinhar visão técnica/produto.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Escopo Entregue</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1 mb-4">
+                                    <li>Proposta de Projeto (#1)</li>
+                                    <li>Implementação de Sistema de Recomendação (#2)</li>
+                                    <li>Criar Documentos/Artefatos Iniciais na Wiki (#3)</li>
+                                    <li>Containerização com Docker (#4)</li>
+                                    <li>Arquitetura de Front-end com React (#5)</li>
+                                    <li>Estrutura de uma API com Flask (#6)</li>
+                                    <li>Integração Flask e SQLAlchemy (#7)</li>
+                                    <li>Pesquisa e Definição de Metodologias Ágeis (#8)</li>
+                                    <li>Configurar o Ambiente de Desenvolvimento com Docker (#9)</li>
+                                    <li>Configuração de Banco de Dados (#12)</li>
+                                    <li>Documento de Arquitetura (#13)</li>
+                                    <li>Definir Escopo do MVP (#14)</li>
+                                    <li>Pesquisar e definir a biblioteca de componentes UI (#15)</li>
+                                </ul>
+                                <h4 class="font-semibold text-red-700 mb-2">🚧 Pendências (Não Concluído)</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Criar Design System (#11)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">
+                                Sprint 1: Autenticação de Usuário (07/09/2025 – 13/09/2025)
+                            </summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Funcionalidades essenciais de autenticação (criar conta/acesso).</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Escopo Entregue</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Criar Meu Cadastro (#17)</li>
+                                    <li>Autenticação de Usuário com E-mail (#18)</li>
+                                    <li>Criar Design System (#11)</li>
+                                    <li>Prova de Conceito para Consumo de APIs de Notícias (#16)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">
+                                Sprint 2: Gerenciamento de Conta do Usuário (14/09/2025 – 20/09/2025)
+                            </summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Atualização cadastral e infraestrutura de coleta de notícias.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Escopo Entregue</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1 mb-4">
+                                    <li>Editar Informações da Conta (#57)</li>
+                                    <li>Alterar Senha (#58)</li>
+                                    <li>Script de Coleta de Notícias e Gerenciamento de Fontes (#21)</li>
+                                    <li>Configurar contêiner do job agendado (Cron) (#81)</li>
+                                </ul>
+                                <h4 class="font-semibold text-red-700 mb-2">🚧 Pendências (Não Concluído)</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Visualizar Página de Perfil e Preferências (#22)</li>
+                                    <li>Gerenciar Tópicos de Interesse (#59)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">
+                                Sprint 3: Ciclo Completo e Documentação (21/09/2025 – 27/09/2025)
+                            </summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Finalizar ciclo de conta, personalização e documentação técnica.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Escopo Entregue</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1 mb-4">
+                                    <li>Criar gitpage com Hugo (#90)</li>
+                                    <li>Implementar Swagger para documentação dos endpoints (#112)</li>
+                                    <li>Atualizar `README.md` (#92)</li>
+                                    <li>Criar testes unitários da Sprint 2 (#93)</li>
+                                    <li>Gerenciar Tópicos de Interesse (#59)</li>
+                                    <li>Visualizar Página de Perfil e Preferências (#22)</li>
+                                    <li>Gerenciar Fontes de Notícias Preferidas (#80)</li>
+                                    <li>Logout de Usuário (#19)</li>
+                                </ul>
+                                <h4 class="font-semibold text-red-700 mb-2">🚧 Pendências (Não Concluído)</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Criar diagrama C4 (#91)</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <h4 class="font-semibold text-green-800 mb-2">📝 Changelog [0.1.0-alpha]</h4>
+                        <p class="text-sm text-gray-500 mb-2">2025-09-30</p>
+                        <div class="text-sm text-green-700">
+                            <p class="mb-2"><strong>✨ Adicionado</strong></p>
+                            <ul class="list-disc list-inside ml-4 space-y-1">
+                                <li>Autenticação: Registro, login, logout (JWT Cookies)</li>
+                                <li>Perfil: Visualização/Edição de dados e senha</li>
+                                <li>Preferências: Gerenciamento de Tópicos e Fontes de Notícias</li>
+                                <li>Backend: Job Cron (6h) para coleta via GNews API e Web Scraping</li>
+                                <li>Frontend: Telas de Login, Registro, Conta e Fontes (React + Tailwind)</li>
+                                <li>Dev: Swagger/OpenAPI e testes com Pytest</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Release 2 -->
+                <div id="release2" class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <div class="flex items-center mb-2">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-4">v0.2.0</span>
+                        <h2 class="text-2xl font-bold font-rajdhani">Release 2: MVP (Minimum Viable Product)</h2>
+                    </div>
+
+                    <div class="mb-6">
+                        <span class="text-sm text-gray-500">📅 Lançamento: 03/12/2025</span>
+                    </div>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                        <h3 class="font-semibold text-green-800 mb-2">🎯 Objetivo da Release</h3>
+                        <p class="text-green-700">
+                            Implementar o MVP previamente planejado, entregando valor real ao usuário final através de uma
+                            <strong>leitura eficiente de notícias</strong> e o envio de <strong>newsletters personalizadas</strong>.
+                        </p>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mb-4">🏃‍♂️ Sprints da Release 2</h3>
+
+                    <div class="space-y-4">
+                    <div class="space-y-4">
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 4: Consolidação (28/09/2025 - 04/10/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Consolidar uma base estável para a Release 1.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1 mb-4">
+                                    <li>Release 1 (#94)</li>
+                                    <li>Cobertura de 90% de testes - Release 1 (#120)</li>
+                                    <li>Fix: Data de nascimento com 1 dia a menos (#117)</li>
+                                    <li>Ajustar rotas e fluxo do front end (#108)</li>
+                                    <li>Ajustar linguagem (i18n) em todas as telas (#111)</li>
+                                    <li>Implementar proteção de rotas no frontend (#107)</li>
+                                    <li>Padronização de nome do projeto (Synapse) (#110)</li>
+                                </ul>
+                                <h4 class="font-semibold text-red-700 mb-2">🚧 Não Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Criar diagrama C4 (#91)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 5: Experiência de Leitura (05/10/2025 - 11/10/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Entregar a experiência central de leitura e consumo do feed.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1 mb-4">
+                                    <li>Ler Notícia (#26)</li>
+                                    <li>Visualização do Feed Principal (#25)</li>
+                                    <li>Extração de Tópicos da Notícia com IA (#132)</li>
+                                    <li>Favoritar/Salvar uma Notícia (#29)</li>
+                                    <li>Busca inteligente baseada em popularidade (#95)</li>
+                                </ul>
+                                <h4 class="font-semibold text-red-700 mb-2">🚧 Não Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Permitir acesso à página principal sem login (#131)</li>
+                                    <li>Criar diagrama C4 (#91)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 6: Notícias Salvas (12/10/2025 - 18/10/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Acesso organizado a notícias salvas ("Ler depois").</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Visualizar Página de Notícias Favoritas/Salvas (#33)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 7: Histórico e Feed "For You" (19/10/2025 - 25/10/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Histórico de leitura e refinamento do feed.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Histórico de Notícias Lidas (#34)</li>
+                                    <li>Simplificar Coleta para Tópicos Padrão e Feed "For You" (#151)</li>
+                                    <li>Pesquisa sobre envio de e-mails para newsletter (#149)</li>
+                                    <li>Permitir acesso à página principal sem login (#131)</li>
+                                    <li>Criar diagrama C4 (#91)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 8: Newsletter (26/10/2025 - 01/11/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Enviar Newsletter personalizada por usuário.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Configurar Serviço de Envio de Email (#181)</li>
+                                    <li>Implementar CI/CD (#159)</li>
+                                    <li>Botão "Voltar ao topo" com Framer Motion (#198)</li>
+                                    <li>Envio da Newsletter Diária (#27)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 9: Refinamentos de UI (02/11/2025 - 08/11/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Polimento do Frontend e Animações.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Responsividade em todas as telas (#200)</li>
+                                    <li>Animações de UI com Framer Motion (#184)</li>
+                                    <li>Fix: Problemas de scraping (links, imagens, formatação) (#152)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 10: Configuração de Newsletter (09/11/2025 - 15/11/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Personalizar o recebimento da newsletter.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1 mb-4">
+                                    <li>Responsividade Telas de Login e Cadastro (#213)</li>
+                                    <li>Habilitar/Desabilitar Recebimento da Newsletter (#23)</li>
+                                    <li>UI da Página de Configuração da Newsletter (#212)</li>
+                                </ul>
+                                <h4 class="font-semibold text-red-700 mb-2">🚧 Não Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>[SPIKE] Hospedagem/Deploy do sistema (#201)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 11: Refinamento de Scrape (16/11/2025 - 22/11/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Melhorias no motor de coleta.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Evoluir Serviço de Scrape (#216)</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="p-4 cursor-pointer hover:bg-gray-50 font-semibold">Sprint 12: Deploy do MVP (23/11/2025 - 29/11/2025)</summary>
+                            <div class="px-4 pb-4 pt-2 border-t border-gray-200">
+                                <p class="text-gray-600 mb-3"><strong>Meta:</strong> Realizar o deploy da versão estável.</p>
+                                <h4 class="font-semibold text-gray-700 mb-2">✅ Concluídos</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Adicionar link da notícia na página de leitura (#207)</li>
+                                    <li>Fix: Registros duplicados no banco (#155)</li>
+                                    <li>Fix: Tópicos incorretos associados (#215)</li>
+                                    <li>Hospedagem/Deploy do sistema em Produção (#201)</li>
+                                    <li>Autenticação com Google (#41)</li>
+                                    <li>Prompt para resumo com IA (newsletter) (#217)</li>
+                                    <li>Fazer o Deploy do sistema em produção (#223)</li>
+                                    <li>Configuração de chaves .env para Prod (#222)</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <h4 class="font-semibold text-green-800 mb-2">📝 Changelog [0.2.0]</h4>
+                        <p class="text-sm text-gray-500 mb-2">2025-12-02</p>
+                        <div class="text-sm text-green-700 space-y-3">
+                            <div>
+                                <p class="font-semibold mb-1">✨ Adicionado</p>
+                                <ul class="list-disc list-inside ml-4 space-y-1">
+                                    <li>Newsletter Inteligente: Resumos via IA (Gemini), agendamento cron e templates responsivos.</li>
+                                    <li>Google OAuth: Login social e sincronização de contas</li>
+                                    <li>Scraping Avançado: Extração via `newspaper4k`, sanitização de HTML e blacklist de sites.</li>
+                                    <li>Engajamento: Histórico de leitura, Notícias Salvas e Tópicos Customizados (UserSavedNews, CustomTopic).</li>
+                                    <li>Infraestrutura: CI/CD com GHCR e logs estruturados.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-semibold mb-1">🔧 Melhorado</p>
+                                <ul class="list-disc list-inside ml-4 space-y-1">
+                                    <li>Cobertura de Testes: >90% (Unitários e Integração).</li>
+                                    <li>Rate Limiting: Controle de chamadas API Gemini.</li>
+                                    <li>Performance: Otimização na coleta de tópicos padrão.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-semibold mb-1">🐛 Corrigido</p>
+                                <ul class="list-disc list-inside ml-4 space-y-1">
+                                    <li>Imagens corrompidas nos artigos</li>
+                                    <li>Duplicação de histórico de leitura diário</li>
+                                    <li>Responsividade mobile e inicialização de containers Docker.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espaço para imagem: Timeline das releases -->
+                <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
+                    <i class="fas fa-timeline text-4xl text-gray-400 mb-4"></i>
+                    <p class="text-gray-500">Espaço para Timeline Visual das Releases</p>
+                </div>
+            </section>
+
+            <!-- Como Contribuir -->
+            <section id="contribuir" class="mb-16">
+                <h1 class="text-4xl font-bold font-rajdhani mb-8 text-black">Como Contribuir</h1>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+                    <p class="text-blue-800">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Olá e seja bem-vindo(a) ao time do Synapse! Ficamos muito felizes com seu interesse em contribuir. Este guia contém tudo que você precisa para configurar o ambiente, rodar o projeto localmente e fazer sua primeira contribuição.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">🚀 Rodando o Projeto</h2>
+                    <p class="text-gray-700 mb-6">
+                        O Synapse é um projeto de agregador de notícias inteligente, projetado para combater o excesso de informação e oferecer uma experiência de leitura rápida e personalizada. Desenvolvido com um back-end em Flask (Python) e um front-end em React, o sistema é totalmente containerizado com Docker para garantir um ambiente consistente para todos. Para começar, você só precisa do Git e do Docker instalados na sua máquina. Todo o resto é gerenciado pelos nossos contêineres.
+                    </p>
+
+                    <h3 class="text-xl font-semibold mb-4">Pré-requisitos</h3>
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-1">
+                        <li><a href="https://git-scm.com/" target="_blank" class="text-blue-500 hover:text-blue-700">Git</a></li>
+                        <li><a href="https://www.docker.com/products/docker-desktop/" target="_blank" class="text-blue-500 hover:text-blue-700">Docker</a> e Docker Compose</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-4">Passo a Passo</h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-gray-700 mb-2">Abra seu terminal, clone o projeto e entre na pasta.</p>
+                            <h4 class="font-semibold text-gray-800 mb-2">1. Clone o Repositório</h4>
+                            <div class="code-block">
+git clone https://github.com/unb-mds/2025-2-Synapse.git
+cd 2025-2-Synapse
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-700 mb-2">O backend precisa de um arquivo `.env` para as chaves de API e configurações do banco de dados. Você pode copiar o exemplo:</p>
+                            <h4 class="font-semibold text-gray-800 mb-2">2. Configure as Variáveis de Ambiente (Backend)</h4>
+                            <div class="code-block">
+# Na raiz do projeto
+cp .env.example .env
+                            </div>
+                            <div class="bg-yellow-50 border border-yellow-200 rounded p-3 mt-2">
+                                <p class="text-yellow-800 text-sm">
+                                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                                    <strong>Importante:</strong> Abra o arquivo <code>.env</code> e preencha as chaves de API necessárias (como a da `GNews API`).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-700 mb-2">O frontend precisa saber o endereço da API. Crie o arquivo `.env` dentro da pasta `frontend/`:</p>
+                            <h4 class="font-semibold text-gray-800 mb-2">3. Configure as Variáveis de Ambiente (Frontend)</h4>
+                            <div class="code-block">
+# Comando executado a partir da raiz do projeto
+echo "VITE_API_BASE_URL=http://localhost:5001" > frontend/.env
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-700 mb-2">
+                                Este é o comando mágico que irá construir as imagens e iniciar todos os serviços (backend, frontend, banco de dados e o job agendado). A flag `--build` garante que as imagens serão reconstruídas se houver mudanças e a flag `-d` (detached) roda os contêineres em segundo plano.
+                            </p>
+                            <h4 class="font-semibold text-gray-800 mb-2">4. Suba os Contêineres com Docker Compose</h4>
+                            <div class="code-block">
+docker compose up --build -d
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">5. Tudo Pronto! ✅</h4>
+                            <p class="text-gray-700 mb-3">Se tudo correu bem, a aplicação estará disponível nos seguintes endereços:</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center p-3 bg-gray-50 rounded">
+                                    <span class="mr-3">🖥️</span>
+                                    <div>
+                                        <strong>Frontend (React):</strong>
+                                        <a href="http://localhost:5173" target="_blank" class="text-blue-500 hover:text-blue-700 ml-2">http://localhost:5173</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 bg-gray-50 rounded">
+                                    <span class="mr-3">⚙️</span>
+                                    <div>
+                                        <strong>Backend (Flask API):</strong>
+                                        <a href="http://localhost:5001" target="_blank" class="text-blue-500 hover:text-blue-700 ml-2">http://localhost:5001</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 bg-gray-50 rounded">
+                                    <span class="mr-3">📚</span>
+                                    <div>
+                                        <strong>Documentação da API (Swagger):</strong>
+                                        <a href="http://localhost:5001/api/docs" target="_blank" class="text-blue-500 hover:text-blue-700 ml-2">http://localhost:5001/api/docs</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">🤝 Como Contribuir</h2>
+                    <p class="text-gray-700 mb-4">Com o ambiente rodando, você está pronto para contribuir! Existem várias formas de ajudar:</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="p-4 border border-gray-200 rounded-lg">
+                            <i class="fas fa-bug text-red-500 text-xl mb-2"></i>
+                            <h3 class="font-semibold mb-2">Reportando Bugs</h3>
+                            <p class="text-sm text-gray-600">Encontrou um problema? Abra uma <a href="https://github.com/unb-mds/2025-2-Synapse/issues" target="_blank" class="text-blue-500">Issue</a> detalhando o erro.</p>
+                        </div>
+                        <div class="p-4 border border-gray-200 rounded-lg">
+                            <i class="fas fa-lightbulb text-yellow-500 text-xl mb-2"></i>
+                            <h3 class="font-semibold mb-2">Sugerindo Melhorias</h3>
+                            <p class="text-sm text-gray-600">Tem uma ideia para uma nova funcionalidade? Abra uma <a href="https://github.com/unb-mds/2025-2-Synapse/issues" target="_blank" class="text-blue-500">Issue</a> com a tag `enhancement`.</p>
+                        </div>
+                        <div class="p-4 border border-gray-200 rounded-lg">
+                            <i class="fas fa-code text-blue-500 text-xl mb-2"></i>
+                            <h3 class="font-semibold mb-2">Escrevendo Código</h3>
+                            <p class="text-sm text-gray-600">Para corrigir bugs ou implementar features, siga nosso fluxo.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mb-4">Nosso Fluxo de Trabalho (Git Workflow)</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-semibold">1. Crie uma Branch a partir da `dev`</h4>
+                            <p class="text-sm text-gray-600">Todo novo trabalho deve ser feito em uma branch separada, criada a partir da `dev`. Exemplos: `feat/pagina-de-perfil`, `fix/erro-login-social`, `docs/atualizar-getting-started`</p>
+                            <div class="code-block mt-2">
+# Garanta que sua branch dev local está atualizada
+git switch dev
+git pull origin dev
+
+# Crie sua nova branch
+git switch -c &lt;tipo&gt;/&lt;nome-descritivo&gt;
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-semibold">2. Faça Commits Atômicos e Semânticos</h4>
+                            <p class="text-sm text-gray-600">Siga o <a href="https://github.com/iuricode/padroes-de-commits" target="_blank" class="text-blue-500">Padrão de Commit</a>. Cada commit deve representar uma pequena unidade lógica de trabalho. Veja a tabela abaixo.</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-semibold">3. Mantenha sua Branch Atualizada</h4>
+                            <p class="text-sm text-gray-600">Antes de submeter seu trabalho, sincronize sua branch com a `dev` para resolver possíveis conflitos.</p>
+                            <div class="code-block mt-2">
+# Estando na sua branch de feature
+git pull origin dev
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="font-semibold">4. Abra um Pull Request (PR)</h4>
+                            <p class="text-sm text-gray-600">Quando seu trabalho estiver pronto, envie um Pull Request para a branch `dev`. Preencha o template do PR para que todos entendam o que foi feito.</p>
+                        </div>
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="font-semibold">5. Aguarde a Revisão de Código</h4>
+                            <p class="text-sm text-gray-600">Pelo menos um outro membro da equipe precisa revisar e aprovar seu PR antes que ele seja integrado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">📈 Nosso Processo de Desenvolvimento</h2>
+                    <p class="text-gray-700 mb-4">Para garantir a qualidade e o alinhamento, seguimos dois conceitos importantes:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Definition of Ready (DoR)</h3>
+                            <p class="text-gray-600 mb-3">Uma tarefa está <strong>pronta para ser iniciada</strong> se:</p>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>✅ A história está bem escrita e clara.</li>
+                                <li>✅ Os Critérios de Aceitação são objetivos e testáveis.</li>
+                                <li>✅ Foi discutida e entendida por todo o time de desenvolvimento.</li>
+                                <li>✅ Foi estimada em Story Points.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Definition of Done (DoD)</h3>
+                            <p class="text-gray-600 mb-3">Uma tarefa é considerada <strong>concluída</strong> quando:</p>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>✅ O código foi implementado conforme os Critérios de Aceitação.</li>
+                                <li>✅ O código foi revisado e aprovado por, no mínimo, um colega.</li>
+                                <li>✅ Testes automatizados (quando aplicáveis) foram criados e estão passando.</li>
+                                <li>✅ A funcionalidade foi integrada à branch `dev`.</li>
+                                <li>✅ Foi demonstrada e validada na Sprint Review.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold font-rajdhani mb-4">📝 Padrão de Commits Semânticos</h2>
+                    <p class="text-gray-700 mb-4">A estrutura é: <code class="bg-gray-100 px-2 py-1 rounded">&lt;emoji&gt; &lt;tipo&gt;(&lt;escopo&gt;): &lt;descrição&gt;</code></p>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-200">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border border-gray-200 px-4 py-2 text-left">Tipo</th>
+                                    <th class="border border-gray-200 px-4 py-2 text-left">Emoji</th>
+                                    <th class="border border-gray-200 px-4 py-2 text-left">Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-2">feat</td>
+                                    <td class="border border-gray-200 px-4 py-2">✨</td>
+                                    <td class="border border-gray-200 px-4 py-2">Uma nova funcionalidade para o usuário</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-2">fix</td>
+                                    <td class="border border-gray-200 px-4 py-2">🐛</td>
+                                    <td class="border border-gray-200 px-4 py-2">Uma correção de bug</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-2">docs</td>
+                                    <td class="border border-gray-200 px-4 py-2">📚</td>
+                                    <td class="border border-gray-200 px-4 py-2">Mudanças apenas na documentação</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-2">chore</td>
+                                    <td class="border border-gray-200 px-4 py-2">🔧</td>
+                                    <td class="border border-gray-200 px-4 py-2">Mudanças de configuração, scripts, tarefas</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-2">refactor</td>
+                                    <td class="border border-gray-200 px-4 py-2">♻️</td>
+                                    <td class="border border-gray-200 px-4 py-2">Refatoração que não altera funcionalidade</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-2">test</td>
+                                    <td class="border border-gray-200 px-4 py-2">🧪</td>
+                                    <td class="border border-gray-200 px-4 py-2">Adição ou modificação de testes</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-2">style</td>
+                                    <td class="border border-gray-200 px-4 py-2">💄</td>
+                                    <td class="border border-gray-200 px-4 py-2">Mudanças de estilo e formatação</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 ml-80">
+        <div class="max-w-4xl mx-auto px-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold font-rajdhani mb-2">Synapse</h3>
+                    <p class="text-gray-400 text-sm">Documentação do Projeto - Versão 1.2</p>
+                    <p class="text-gray-400 text-sm">Data: 03/12/2025</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-400 text-sm mb-2">Desenvolvido por:</p>
+                    <p class="text-gray-300 text-sm">Equipe UnB - MDS</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2025 Synapse. Documentação gerada para fins acadêmicos.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para os links da sidebar
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight da seção ativa na sidebar
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-black', 'font-semibold');
+                if (link.getAttribute('href') === '#' + currentSectionId) {
+                    link.classList.add('text-black', 'font-semibold');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
